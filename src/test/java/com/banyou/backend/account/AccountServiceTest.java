@@ -21,7 +21,6 @@ import org.springside.modules.utils.Clock.MockClock;
 
 import com.banyou.backend.data.UserData;
 import com.banyou.backend.entity.User;
-import com.banyou.backend.repository.TaskDao;
 import com.banyou.backend.repository.UserDao;
 import com.banyou.backend.service.ServiceException;
 import com.banyou.backend.service.account.AccountService;
@@ -40,8 +39,6 @@ public class AccountServiceTest {
 	@Mock
 	private UserDao mockUserDao;
 
-	@Mock
-	private TaskDao mockTaskDao;
 
 	@Before
 	public void setUp() {

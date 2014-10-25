@@ -11,7 +11,7 @@ import org.springside.modules.test.spring.Profiles;
  */
 public class BackendServer {
 
-	public static final int PORT = 8080;
+	public static final int PORT = 8081;
 	public static final String CONTEXT = "/backend";
 	public static final String[] TLD_JAR_NAMES = new String[] { "sitemesh", "spring-webmvc", "shiro-web",
 			"springside-core" };
