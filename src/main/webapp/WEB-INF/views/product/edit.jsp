@@ -1,22 +1,24 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<c:set var="staticPath" value="${pageContext.request.contextPath}/static" />
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
 <head>
     <meta charset="UTF-8">
     <title>发布页</title>
-	<link rel="stylesheet" href="${staticPath}/product/css/style.css">
+    <link rel="stylesheet" href="${staticPath}/css/edit.css"/>
 </head>
 <body>
 <div class="container">
         <h3>发布商品</h3>
-        <form class="form-horizontal" role="form" style="margin-top: 40px;">
-        		<input type="hidden" name="id" value="${product.id}"/>
+        <form class="form-horizontal" role="form" action="../${action}" method="post" style="margin-top: 40px;">
+        	<input type="hidden" name="id" value="${product.id}"/>
             <div class="form-group">
                 <label class="col-sm-2 control-label">商品标题</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control J_name" maxlength="40" placeholder="不超过40个字" value="${product.name} "></div>
+                    <input name="name" type="text" class="form-control J_name" maxlength="40" placeholder="不超过40个字" value="${product.name} "></div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">商品图片</label>
@@ -24,7 +26,7 @@
                     <div>
                         <input type="file" name="file_upload" id="uploadProductImg" />
                     </div>
-                    <div class="J_product-img-list"></div>
+                    <div class="J_product-img-list"> </div>
                 </div>
             </div>
             <div class="form-group">
@@ -34,18 +36,21 @@
                         <button class="btn btn-default J_add-text" type="button" style="margin-right: 10px;">添加文字</button>
                         <button class="btn btn-default J_add-img" type="button">添加图片</button>
                     </p>
-                    <div class="form-detail-con J_detail"></div>
+                    <div class="form-detail-con J_detail">
+                    
+                    </div>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">价格</label>
                 <div class="col-sm-2">
-                    <input type="text" class="form-control J_price"></div>
+               
+                    <input name="price" type="text" class="form-control J_price" value="<fmt:formatNumber pattern="#.##" value="${product.price}"></fmt:formatNumber>"></div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">推荐理由</label>
                 <div class="col-sm-8">
-                    <textarea  class="form-control J_rcmd-reason" cols="30" rows="5"></textarea>
+                    <textarea name="recommand" class="form-control J_rcmd-reason" cols="30" rows="5">${product.recommand }</textarea>
                 </div>
             </div>
             <div class="form-group">
@@ -73,11 +78,11 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">购买链接</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control J_buy-url"></div>
+                    <input name="url" type="text" class="form-control J_buy-url" value="${product.url }"></div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="button" class="btn btn-primary J_submit">提交</button>
+                    <button type="submit" class="btn btn-primary J_submit">提交</button>
                 </div>
             </div>
         </form>
@@ -204,7 +209,7 @@
     </div>
 
 	
-    <script>seajs.use('product/js/add')</script>    
+    <script>seajs.use('edit')</script>    
 
 </body>
 </html>

@@ -57,7 +57,7 @@ public class ProductController {
 	@RequestMapping(value = "create", method = RequestMethod.GET)
 	public String createForm(Model model) {
 		model.addAttribute("action", "create");
-		return "product/productForm";
+		return "product/edit";
 	}
 
 	@RequestMapping(value = "create", method = RequestMethod.POST)
@@ -71,9 +71,8 @@ public class ProductController {
 	public String updateForm(@PathVariable("id") Long id, Model model) {
 		
 		model.addAttribute("product", productService.getProduct(id));
-		System.out.println(model.asMap());
 		model.addAttribute("action", "update");
-		return "product/productForm";
+		return "product/edit";
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)

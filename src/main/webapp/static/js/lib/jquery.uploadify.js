@@ -746,6 +746,7 @@ if (SWFUpload == undefined) {
         this.initSWFUpload(a)
     }
 }
+
 SWFUpload.prototype.initSWFUpload = function(b) {
     try {
         this.customSettings = {};
@@ -818,7 +819,7 @@ SWFUpload.completeURL = function(a) {
     return path + a
 };
 SWFUpload.prototype.initSettings = function() {
-    this.ensureDefault = function(b, a) {
+	this.ensureDefault = function(b, a) {
         this.settings[b] = (this.settings[b] == undefined) ? a : this.settings[b]
     };
     this.ensureDefault("upload_url", "");

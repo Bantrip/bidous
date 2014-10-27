@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 //JPA标识
 @Entity
 @Table(name = "product")
@@ -55,5 +57,8 @@ public void setStock(int stock) {
 	this.stock = stock;
 }
 
-
+@Override
+public String toString() {
+	return ToStringBuilder.reflectionToString(this);
+}
 }
