@@ -565,7 +565,7 @@
 						<artifactId>maven-antrun-plugin</artifactId>
 						<configuration>
 							<target>
-								<property file="src/main/resources/application.development.properties" />
+								<property file="src/test/resources/application.development.properties" />
 								<property file="src/main/resources/application.properties" />
 								<sql driver="${jdbc.driver}" url="${jdbc.url}" userid="${jdbc.username}" password="${jdbc.password}"
 									onerror="continue" encoding="${project.build.sourceEncoding}">
