@@ -1,4 +1,3 @@
-
 package com.banyou.backend.entity;
 
 import javax.persistence.GeneratedValue;

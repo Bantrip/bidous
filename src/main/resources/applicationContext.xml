@@ -59,7 +59,7 @@
 	
 	
 	<!-- production环境 -->
- 	<beans profile="production">
+ 	<beans profile="production" >
  		<context:property-placeholder ignore-unresolvable="true"
 			location="classpath*:/application.properties" />	
 		

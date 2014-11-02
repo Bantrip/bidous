@@ -1,5 +1,55 @@
 drop table if exists ss_user;
 drop table if exists product;
+drop table if exists dest;
+drop table if exists product_has_dest;
+drop table if exists upload_pic;
+
+CREATE TABLE prod_imgs (
+  id BIGINT auto_increment,
+  url VARCHAR(2000) NULL,
+  product_id BIGINT NOT NULL,
+  index BIGINT NULL,
+  PRIMARY KEY (id),
+)ENGINE = InnoDB;
+
+create table product_has_tag (
+  id bigint auto_increment,
+  product_id BIGINT NOT NULL,
+  tag_id BIGINT NOT NULL,
+  PRIMARY KEY (id)
+)ENGINE = InnoDB;
+
+create table tag (
+  id bigint auto_increment,
+  name VARCHAR(300) NULL COMMENT 'tag名',
+  tag_group_id bigint NOT NULL,
+  PRIMARY KEY (id),
+)ENGINE = InnoDB;
+
+
+create table tag_group (
+  id bigint auto_increment,
+  name VARCHAR(300) NULL comment 'tag组名',
+  PRIMARY KEY (id)
+)ENGINE = InnoDB;
+
+
+CREATE TABLE product_has_dest (
+  product_id BIGINT NOT NULL,
+  dest_id BIGINT NOT NULL,
+  id bigint auto_increment NOT NULL,
+  PRIMARY KEY (id)
+)ENGINE = InnoDB;
+
+
+create table dest (
+  id bigint auto_increment,
+  name VARCHAR(200)  COMMENT '地点名',
+  type bigint  COMMENT '类型 0 国内 1 境外',
+  PRIMARY KEY (id)
+ )ENGINE = InnoDB;
+
+
 
 create table product (
   id bigint auto_increment,
