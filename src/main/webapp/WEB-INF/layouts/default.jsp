@@ -11,7 +11,6 @@
 <meta http-equiv="Expires" content="0" />
 <c:set var="staticPath" value="${pageContext.request.contextPath}/static" />
 <link rel="stylesheet" href="${staticPath}/css/lib/bootstrap.css"/>
-<link rel="stylesheet" href="${staticPath}/css/lib/bootstrap-theme.css"/>
     <script src="${staticPath}/js/lib/jquery.js"></script>
     <script src="${staticPath}/js/lib/jquery.uploadify.js"></script>
      <script>(function(global){
