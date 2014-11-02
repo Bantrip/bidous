@@ -12,12 +12,10 @@ import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.assertj.core.util.Lists;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.springside.examples.showcase.entity.Role;
+
+import com.google.common.collect.Lists;
 
 //JPA标识
 @Entity
