@@ -1,10 +1,10 @@
 package com.banyou.backend.web.upload;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,10 +14,11 @@ import org.springside.modules.web.MediaTypes;
 
 import com.banyou.backend.service.resource.ImageService;
 import com.banyou.backend.web.AjaxResponse;
-import com.sun.prism.Image;
+import org.slf4j.Logger;
 
 @Controller
 public class FileUploadController {
+	private Logger log=LoggerFactory.getLogger(getClass());
 	@Autowired
 	ImageService service;
 
@@ -25,6 +26,13 @@ public class FileUploadController {
 //    public @ResponseBody String provideUploadInfo() {
 //        return "You can upload a file by posting to this same URL.";
 //    }
+	
+	@RequestMapping(value = "/dowload/{path}", method = RequestMethod.GET)
+	public String download(@PathVariable("path") String path, Model model) {
+		
+		log.info(path);
+		return "product/edit";
+	}
 	
 	
     @RequestMapping(value="/upload", method=RequestMethod.GET)

@@ -357,8 +357,8 @@ define(function(require, exports) {
    initAddDetal();
    initPrice();
    initUpload();
-   // initSelectTag();
-   // initSelectLocation();
-   // initSubmit();
+    initSelectTag();
+    initSelectLocation();
+    initSubmit();
 
 });

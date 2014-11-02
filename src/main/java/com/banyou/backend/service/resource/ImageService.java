@@ -17,6 +17,7 @@ import java.io.OutputStream;
 import java.util.Calendar;
 import java.util.UUID;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
@@ -35,14 +36,14 @@ public class ImageService {
 	//path 规则 pathBase+文件URI
 	//映射关系 url==>path   url去掉urlBase替换为pathBase
 	private String urlBase="http://127.0.0.1:8081/bidoushi/download";
-	private String pathBase="~/upload";
+	private String pathBase="/Users/huangkemin/temp/upload";
 	
 	private String separator= File.separator;
 	
 	public InputStream getResourceStreamByUrl(String url){
 		int index=url.indexOf(urlBase);
-		Assert.isTrue(index>0,"not my resource");
-		String path=pathBase+url.substring(index);
+		Assert.isTrue(index==0,"not my resource");
+		String path=pathBase+url.substring(urlBase.length());
 		
 		try {
 			return new FileInputStream(path);
@@ -57,7 +58,7 @@ public class ImageService {
 	 */
 	public String saveResouce(String fileName,InputStream is){
 		
-		OutputStream out=null;
+		//OutputStream out=null;
 		try{
 			String path=createRealPath(fileName);
 			File outFile=new File(pathBase+path);
@@ -65,12 +66,15 @@ public class ImageService {
 				path=createRealPath(fileName);
 				outFile=new File(pathBase+path);
 			}
-			outFile.createNewFile();
+			//if(!outFile.getParentFile().exists()){
+				//outFile.mkdirs();
+			//}
+			//outFile.createNewFile();
 			
-			out= new FileOutputStream(outFile);
-		
+			//out= new FileOutputStream(outFile);
+			FileUtils.copyInputStreamToFile(is, outFile);
 			//写文件
-			IOUtils.copyLarge(is, out);
+			//IOUtils.copyLarge(is, out);
 
         return urlBase+path;
 		} catch (IOException e) {
@@ -78,7 +82,7 @@ public class ImageService {
 			
 		}finally{
 			IOUtils.closeQuietly(is);
-			IOUtils.closeQuietly(out);
+			//IOUtils.closeQuietly(out);
 		}
 	}
 	
