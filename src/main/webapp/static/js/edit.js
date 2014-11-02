@@ -68,7 +68,7 @@ define(function(require, exports) {
                 $("#" + UPLOAD_IMG_ID + imgId).uploadify({
                     buttonText: '上传',
                     height: 30,
-                    uploader: '/ajax/uploadImg',
+                    uploader: '/bidoushi/upload',
                     width: 120,
                     onUploadSuccess: function(file, data, res) {
                         var wrap = $('#' + this.movieName).parents('.con').next('.J_img-list');
