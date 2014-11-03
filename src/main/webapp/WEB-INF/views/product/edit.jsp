@@ -23,10 +23,9 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">商品图片</label>
                 <div class="col-sm-10">
-                    <div>
+                    <div class="J_product-img-upload">
                         <input type="file" name="file_upload" id="uploadProductImg" />
                     </div>
-                    <div class="J_product-img-list"> </div>
                 </div>
             </div>
             <div class="form-group">
