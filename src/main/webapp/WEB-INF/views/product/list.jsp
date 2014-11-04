@@ -63,6 +63,7 @@
                             <ul class="dropdown-menu">
                                 <li>
                                     <a class="J_ope" data-type="del" >删除</a>
+                                     <a class="J_ope" data-type="submit">提交审核</a>
                                     <a class="J_ope" data-type="audit">审核</a>
                                     <a class="J_ope" data-type="reject">驳回</a>
                                 </li>

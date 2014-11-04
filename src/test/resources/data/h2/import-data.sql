@@ -4,8 +4,8 @@
 insert into ss_user (id, login_name, name, password, salt, roles, register_date) values(1,'admin','Admin','691b14d79bf0fa2215f155235df5e670b64394cc','7efbd59d9741d34f','admin','2012-06-04 01:00:00');
 insert into ss_user (id, login_name, name, password, salt, roles, register_date) values(2,'user','Calvin','2488aa0c31c624687bd9928e0a5d29e7d1ed520b','6d65d24122c30500','user','2012-06-04 02:00:00');
 
-insert into product (id,name, recommand , status ,  price,url,stock) values (1,'sucksuck1','no zuo no die',1,22.3,'http://www.yhd.com',0);
-insert into product (id,name, recommand , status ,  price,url,stock) values (2,'sucksuck2','why you try',1,22.3,'htp://www.yhd.com',0);
+insert into product (id,name, recommand , status ,  price,url,stock) values (1,'18岁大学生陪你游山玩水','no zuo no die',1,22.3,'http://www.yhd.com',0);
+insert into product (id,name, recommand , status ,  price,url,stock) values (2,'高科技产品','why you try',0,1222.3,'htp://www.yhd.com',0);
 
 insert into dest(id,name,type) values (1,'三亚',0);
 insert into dest(id,name,type) values (2,'长白山',0);
