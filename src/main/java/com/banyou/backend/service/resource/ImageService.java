@@ -14,6 +14,8 @@ import java.io.InputStream;
 import java.util.Calendar;
 import java.util.UUID;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Component;
@@ -32,10 +34,15 @@ public class ImageService {
 	//url 规则 urlBase+文件URI
 	//path 规则 pathBase+文件URI
 	//映射关系 url==>path   url去掉urlBase替换为pathBase
-	private String urlBase="http://127.0.0.1:8081/bidoushi/download";
-	private String pathBase="/Users/huangkemin/temp/upload";
-	
 	private String separator= File.separator;
+	private String urlBase="http://127.0.0.1:8081/bidoushi/download";
+	private String pathBase=System.getProperty("user.home")+separator+"temp"+separator+"upload";
+	
+	
+	@PostConstruct
+	public void init(){
+		
+	}
 	
 	public InputStream getResourceStreamByUrl(String url){
 		int index=url.indexOf(urlBase);
