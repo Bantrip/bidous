@@ -19,35 +19,54 @@ import com.banyou.backend.entity.Product;
 import com.banyou.backend.entity.ProductImage;
 
 import org.slf4j.Logger;
+
 @ContextConfiguration(locations = { "/applicationContext.xml" })
 public class ProductImageDaoTest extends SpringTransactionalTestCase {
-private Logger logger=LoggerFactory.getLogger(getClass());
+	private Logger logger = LoggerFactory.getLogger(getClass());
 	@Autowired
 	private ProductImageDao productImageDao;
 
 	@Test
 	public void findProductImageById() throws Exception {
 		ProductImage image = productImageDao.findOne(1L);
-	
-		assertThat(image).isNotNull();	
-		logger.info("find image by id=1,found {}",image);
-		}
+
+		assertThat(image).isNotNull();
+		logger.info("find image by id=1,found {}", image);
+	}
+
 	@Test
 	public void saveProductImage() throws Exception {
+		Long productId = 1L;
+		// init size
+		int size = productImageDao.findByProductId(productId).size();
+		// save image
 		ProductImage image = new ProductImage();
 		image.setIndex(22);
 		image.setUrl("http://tbcdn.com/a.jpg");
 		image.setProduct(new Product());
-		image.getProduct().setId(1L);
+		image.getProduct().setId(productId);
 		productImageDao.save(image);
-		image=productImageDao.findOne(image.getId());
-		assertThat(image).isNotNull();	
-		logger.info("find image by id={},found {}",image.getId(),image);
-		}
+		image = productImageDao.findOne(image.getId());
+		assertThat(image).isNotNull();
+		logger.info("find image by id={},found {}", image.getId(), image);
+		assertThat(productImageDao.findByProductId(productId).size() - size)
+				.isEqualTo(1);
+	}
+
 	@Test
 	public void findProductImageByProductId() throws Exception {
-		List<ProductImage> images=productImageDao.findByProductId(1L);
-		assertThat(images).isNotNull();	
-		logger.info("find image by productId=1,found {}",images);
-		}
+		List<ProductImage> images = productImageDao.findByProductId(1L);
+		assertThat(images).isNotNull();
+		logger.info("find image by productId=1,found {}", images);
+	}
+	
+	@Test
+	public void deleteProductImageByProductId() throws Exception {
+		Long productId=1L;
+		int size=productImageDao.deleteByProductId(productId);
+		assertThat( productImageDao.findByProductId(productId)).isEmpty();
+		logger.info("delete {} images from product {} ",size,productId);
+	}
+	
+	
 }

@@ -8,6 +8,9 @@ package com.banyou.backend.service.product;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,11 +36,27 @@ public class ProductService {
 		return productDao.findOne(id);
 	}
 /**
- * 保存商品
- * @param product
+ * 
+ * @param pageSize 分页大小
+ * @param pageNo 第几页
+ * @return
  */
+	public Page<Product> findProducts(int pageSize,int pageNo){
+		Pageable page=new PageRequest(pageNo - 1, pageSize);
+		return productDao.findAll(page);
+	}
+	
+	/**
+	 * 保存商品
+	 * 
+	 * @param product
+	 */
 	public void saveProduct(Product product) {
+		if (product.getId() != null) {
+
+		}
 		productDao.save(product);
+
 	}
 
 	@Autowired

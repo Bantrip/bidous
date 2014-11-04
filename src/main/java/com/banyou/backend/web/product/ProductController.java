@@ -6,10 +6,13 @@
 package com.banyou.backend.web.product;
 
 
+import java.util.List;
+
 import javax.servlet.ServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -46,11 +49,11 @@ public class ProductController {
 	private ProductService productService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String list(@RequestParam(value = "page", defaultValue = "1") int pageNumber,
-			@RequestParam(value = "page.size", defaultValue = PAGE_SIZE) int pageSize,
-			@RequestParam(value = "sortType", defaultValue = "auto") String sortType, Model model,
+	public String list(@RequestParam(value = "page", defaultValue = "1") int pageNo,
+			@RequestParam(value = "page.size", defaultValue = PAGE_SIZE) int pageSize, Model model,
 			ServletRequest request) {
-	
+		Page<Product> products = productService.findProducts(pageSize,pageNo);
+		model.addAttribute("products", products);
 		return "product/list";
 	}
 
@@ -76,7 +79,7 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String update(@Valid @ModelAttribute("product") Product product, RedirectAttributes redirectAttributes) {
+	public String update(@Valid @ModelAttribute("product") Product product,@RequestParam(value = "productImages") List<Long> checkedRoleList, RedirectAttributes redirectAttributes) {
 		productService.saveProduct(product);
 		redirectAttributes.addFlashAttribute("message", "更新成功");
 		return "redirect:/product/";

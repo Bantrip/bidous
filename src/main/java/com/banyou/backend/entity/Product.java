@@ -10,10 +10,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.google.common.collect.Lists;
 
@@ -21,6 +24,7 @@ import com.google.common.collect.Lists;
 @Entity
 @Table(name = "product")
 public class Product extends IdEntity{
+
 private String name;
 private String recommand;
 private int status;
@@ -30,8 +34,8 @@ private int stock;
 private List<Dest> dests=Lists.newArrayList();
 private List<ProductImage> images=Lists.newArrayList();
 
-//private List<ProductDesc> desc;
-//private List<ProductPic> pics;
+//private List<ProductDesc> descs;
+@NotEmpty
 public String getName() {
 	return name;
 }
@@ -50,6 +54,7 @@ public int getStatus() {
 public void setStatus(int status) {
 	this.status = status;
 }
+@NotNull
 public BigDecimal getPrice() {
 	return price;
 }
@@ -83,7 +88,7 @@ public List<Dest> getDests() {
 public void setDests(List<Dest> dests) {
 	this.dests = dests;
 }
-
+@NotEmpty
 @OneToMany(mappedBy="product")
 @OrderBy("index ASC")
 public List<ProductImage> getImages() {
@@ -96,4 +101,11 @@ public void setImages(List<ProductImage> images) {
 public String toString() {
 	return ToStringBuilder.reflectionToString(this);
 }
+//tools method
+@Transient
+public String getDefaultPic(){
+	return getImages().isEmpty()?"":getImages().get(0).getUrl();
+}
+
+
 }

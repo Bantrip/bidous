@@ -6,7 +6,6 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
 <head>
-    <meta charset="UTF-8">
     <title>发布页</title>
     <link rel="stylesheet" href="${staticPath}/css/edit.css"/>
 </head>

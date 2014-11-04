@@ -7,23 +7,32 @@ package com.banyou.backend.repository;
 
 import static org.assertj.core.api.Assertions.*;
 
+
 import org.junit.Test;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springside.modules.test.spring.SpringTransactionalTestCase;
 
-import com.banyou.backend.entity.Product;
+import com.banyou.backend.entity.Dest;
+
+import org.slf4j.Logger;
 
 @ContextConfiguration(locations = { "/applicationContext.xml" })
-public class TaskDaoTest extends SpringTransactionalTestCase {
-
+public class DestDaoTest extends SpringTransactionalTestCase {
+	private Logger logger = LoggerFactory.getLogger(getClass());
 	@Autowired
-	private ProductDao productDao;
+	private DestDao productImageDao;
 
 	@Test
-	public void findTasksByUserId() throws Exception {
-		Product product = productDao.findOne(1L);
+	public void findProductImageById() throws Exception {
+		Dest image = productImageDao.findOne(1L);
+
+		assertThat(image).isNotNull();
+		logger.info("find image by id=1,found {}", image);
+	}
+
+
 	
-		assertThat(product).isNotNull();	
-		}
+	
 }
