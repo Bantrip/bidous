@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 //JPA标识
-//@Entity
+@Entity
 @Table(name = "tag_group")
 public class TagGroup extends IdEntity{
 private String name;

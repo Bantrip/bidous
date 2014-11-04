@@ -69,9 +69,10 @@
                     
                         <dt>已选tag：</dt>
                         <c:if test="${not empty product.tags}">
-                        <c:forEach items="${product.tags} " var="tag">
+                        <c:forEach items="${product.tags}" var="tag">
+                        
                         <dd>
-                            <p>人群：<span class="tag" data-tagid="${tag.id} ">${tag.name} </span></p>
+                            <p>${tag.group.name}：<span class="tag" data-tagid="${tag.id}">${tag.name} </span></p>
                         </dd>
                         </c:forEach>
                         </c:if>
@@ -86,11 +87,13 @@
                     <button class="btn btn-default" type="button" data-toggle="modal" data-target="#modalLocation">编辑</button>
                     <dl class="well selected clearfix <c:if test="${empty product.dests}">Hide</c:if> J_loc">
                         <dt>已选目的地：</dt>
-                        <c:forEach items="${product.dests}"  var="prodDest">
+                         <c:if test="${not empty product.dests}">
+                        <c:forEach items="${product.dests}"  var="dest">
                         <dd>
-                            <span data-cityid="${prodDest.id}">${prodDest.name}</span>
+                            <span data-cityid="${dest.id}">${dest.name}</span>
                         </dd>
                         </c:forEach>
+                        </c:if>
                     </dl>
                 </div>
             </div>

@@ -72,8 +72,8 @@ public class ProductController {
 
 	@RequestMapping(value = "update/{id}", method = RequestMethod.GET)
 	public String updateForm(@PathVariable("id") Long id, Model model) {
-		
-		model.addAttribute("product", productService.getProduct(id));
+		Product product=productService.getProduct(id);
+		model.addAttribute("product", product);
 		model.addAttribute("action", "update");
 		return "product/edit";
 	}
@@ -94,7 +94,9 @@ public class ProductController {
 	@ModelAttribute
 	public void getTask(@RequestParam(value = "id", defaultValue = "-1") Long id, Model model) {
 		if (id != -1) {
-			model.addAttribute("product", productService.getProduct(id));
+			Product product=productService.getProduct(id);
+			
+			model.addAttribute("product", product);
 		}
 	}
 

@@ -22,7 +22,7 @@ create table product_has_tag (
 create table tag (
   id bigint auto_increment,
   name VARCHAR(300) NULL COMMENT 'tag名',
-  tag_group_id bigint NOT NULL,
+  group_id bigint NOT NULL,
   PRIMARY KEY (id),
 )ENGINE = InnoDB;
 

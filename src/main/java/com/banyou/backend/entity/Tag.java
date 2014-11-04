@@ -1,11 +1,15 @@
 package com.banyou.backend.entity;
 
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 //JPA标识
-//@Entity
+@Entity
 @Table(name = "tag")
 public class Tag extends IdEntity{
 private String name;
@@ -18,11 +22,16 @@ public void setName(String name) {
 }
 @ManyToOne
 @JoinColumn(name="group_id")
+@Fetch(FetchMode.JOIN)
 public TagGroup getGroup() {
 	return group;
 }
 public void setGroup(TagGroup group) {
 	this.group = group;
+}
+@Override
+public String toString() {
+	return "Tag [name=" + name + ", group=" + group + "]";
 }
 
 

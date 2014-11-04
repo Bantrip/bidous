@@ -90,8 +90,15 @@ public void setDests(List<Dest> dests) {
 	this.dests = dests;
 }
 
-
-@Transient
+//多对多定义
+@ManyToMany
+@JoinTable(name = "product_has_tag", joinColumns = { @JoinColumn(name = "product_id")}, inverseJoinColumns = { @JoinColumn(name = "tag_id") })
+//Fecth策略定义
+@Fetch(FetchMode.SUBSELECT)
+//集合按id排序
+@OrderBy("name ASC")
+//缓存策略
+//@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public List<Tag> getTags() {
 	return tags;
 }

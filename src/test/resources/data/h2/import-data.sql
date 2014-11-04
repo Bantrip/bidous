@@ -48,31 +48,31 @@ insert into tag_group(id,name)values(1,'主题');
 insert into tag_group(id,name)values(2,'品类');
 insert into tag_group(id,name)values(3,'人群');
 
-insert into tag(id,name,tag_group_id)values(1,'登山',1);
-insert into tag(id,name,tag_group_id)values(2,'露营',1);
-insert into tag(id,name,tag_group_id)values(3,'玩水',1);
-insert into tag(id,name,tag_group_id)values(4,'潜水',1);
-insert into tag(id,name,tag_group_id)values(5,'滑雪',1);
-insert into tag(id,name,tag_group_id)values(6,'自驾',1);
-insert into tag(id,name,tag_group_id)values(7,'徒步',1);
-insert into tag(id,name,tag_group_id)values(8,'骑行',1);
-insert into tag(id,name,tag_group_id)values(9,'美食',1);
-insert into tag(id,name,tag_group_id)values(10,'购物',1);
+insert into tag(id,name,group_id)values(1,'登山',1);
+insert into tag(id,name,group_id)values(2,'露营',1);
+insert into tag(id,name,group_id)values(3,'玩水',1);
+insert into tag(id,name,group_id)values(4,'潜水',1);
+insert into tag(id,name,group_id)values(5,'滑雪',1);
+insert into tag(id,name,group_id)values(6,'自驾',1);
+insert into tag(id,name,group_id)values(7,'徒步',1);
+insert into tag(id,name,group_id)values(8,'骑行',1);
+insert into tag(id,name,group_id)values(9,'美食',1);
+insert into tag(id,name,group_id)values(10,'购物',1);
 
-insert into tag(id,name,tag_group_id)values(11,'电子',2);
-insert into tag(id,name,tag_group_id)values(12,'服饰',2);
-insert into tag(id,name,tag_group_id)values(13,'户外',2);
-insert into tag(id,name,tag_group_id)values(14,'收纳',2);
-insert into tag(id,name,tag_group_id)values(15,'日用',2);
-insert into tag(id,name,tag_group_id)values(16,'日化',2);
-insert into tag(id,name,tag_group_id)values(17,'穿戴',2);
-insert into tag(id,name,tag_group_id)values(18,'医护',2);
-insert into tag(id,name,tag_group_id)values(19,'娱乐',2);
+insert into tag(id,name,group_id)values(11,'电子',2);
+insert into tag(id,name,group_id)values(12,'服饰',2);
+insert into tag(id,name,group_id)values(13,'户外',2);
+insert into tag(id,name,group_id)values(14,'收纳',2);
+insert into tag(id,name,group_id)values(15,'日用',2);
+insert into tag(id,name,group_id)values(16,'日化',2);
+insert into tag(id,name,group_id)values(17,'穿戴',2);
+insert into tag(id,name,group_id)values(18,'医护',2);
+insert into tag(id,name,group_id)values(19,'娱乐',2);
 
-insert into tag(id,name,tag_group_id)values(20,'男士',3);
-insert into tag(id,name,tag_group_id)values(21,'儿童',3);
-insert into tag(id,name,tag_group_id)values(22,'女士',3);
-insert into tag(id,name,tag_group_id)values(23,'老人',3);
+insert into tag(id,name,group_id)values(20,'男士',3);
+insert into tag(id,name,group_id)values(21,'儿童',3);
+insert into tag(id,name,group_id)values(22,'女士',3);
+insert into tag(id,name,group_id)values(23,'老人',3);
 
 
 insert into product_has_tag(product_id,tag_id)values(1,1);
