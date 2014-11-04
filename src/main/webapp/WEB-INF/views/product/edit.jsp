@@ -24,7 +24,17 @@
                 <div class="col-sm-10">
                     <div class="J_product-img-upload">
                         <input type="file" name="file_upload" id="uploadProductImg" />
+                        <div id="uploadProductImg-queue" class="uploadify-queue">
+                    		<c:forEach items="${product.images}" var="image">
+                   			<div class="item">
+                   				<img class="img" src="${image.url}">    
+                   				<div class="status" style="visibility: visible;"><span class="glyphicon glyphicon-trash" title="删除"></span></div>  
+                       		</div>
+                        	</c:forEach>
+						</div> 
                     </div>
+                   
+                    
                 </div>
             </div>
             <div class="form-group">
@@ -55,21 +65,32 @@
                 <label class="col-sm-2 control-label">筛选Tag</label>
                 <div class="col-sm-8 form-add-result">
                     <button class="btn btn-default" type="button" data-toggle="modal" data-target="#modalTag">编辑</button>
-                    <dl class="well selected clearfix Hide J_tag">
+                    <dl class="well selected clearfix <c:if test="${empty product.tags}">Hide</c:if> J_tag">
+                    
                         <dt>已选tag：</dt>
+                        <c:if test="${not empty product.tags}">
+                        <c:forEach items="${product.tags} " var="tag">
                         <dd>
-                            <p>人群：<span class="tag" data-tagid="1">男士</span></p>
+                            <p>人群：<span class="tag" data-tagid="${tag.id} ">${tag.name} </span></p>
                         </dd>
+                        </c:forEach>
+                        </c:if>
                     </dl>
+                        
+                    
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">所属目的地</label>
                 <div class="col-sm-8 form-add-result">
                     <button class="btn btn-default" type="button" data-toggle="modal" data-target="#modalLocation">编辑</button>
-                    <dl class="well selected clearfix Hide J_loc">
+                    <dl class="well selected clearfix <c:if test="${empty product.dests}">Hide</c:if> J_loc">
                         <dt>已选目的地：</dt>
-                        <dd></dd>
+                        <c:forEach items="${product.dests}"  var="prodDest">
+                        <dd>
+                            <span data-cityid="${prodDest.id}">${prodDest.name}</span>
+                        </dd>
+                        </c:forEach>
                     </dl>
                 </div>
             </div>

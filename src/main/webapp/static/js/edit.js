@@ -113,6 +113,7 @@ define(function(require, exports) {
                 uploader: '/bidoushi/upload',
                 width: 120,
                 itemTemplate: uploadItemTpl(),
+                queueID:'uploadProductImg-queue',
                 onUploadSuccess: function(file, data, res) {
                     data = JSON.parse(data);
                     if(data.code == 200) {

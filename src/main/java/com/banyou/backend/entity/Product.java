@@ -33,6 +33,7 @@ private String url;
 private int stock;
 private List<Dest> dests=Lists.newArrayList();
 private List<ProductImage> images=Lists.newArrayList();
+private List<Tag> tags=Lists.newArrayList();
 
 //private List<ProductDesc> descs;
 @NotEmpty
@@ -87,6 +88,15 @@ public List<Dest> getDests() {
 }
 public void setDests(List<Dest> dests) {
 	this.dests = dests;
+}
+
+
+@Transient
+public List<Tag> getTags() {
+	return tags;
+}
+public void setTags(List<Tag> tags) {
+	this.tags = tags;
 }
 @NotEmpty
 @OneToMany(mappedBy="product")
