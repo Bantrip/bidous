@@ -5,18 +5,16 @@
  *******************************************************************************/
 package org.springside.examples.showcase.entity;
 
-import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
+import com.google.common.collect.ImmutableList;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import com.google.common.collect.ImmutableList;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.util.List;
 
 /**
  * 角色.

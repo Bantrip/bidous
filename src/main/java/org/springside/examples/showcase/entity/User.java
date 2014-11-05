@@ -5,29 +5,19 @@
  *******************************************************************************/
 package org.springside.examples.showcase.entity;
 
-import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OrderBy;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.collect.Lists;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.FilterJoinTable;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springside.modules.utils.Collections3;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.common.collect.Lists;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * 用户.

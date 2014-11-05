@@ -6,16 +6,8 @@
 package com.banyou.backend.repository;
 
 
-
-
-
-
-
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.PagingAndSortingRepository;
-
 import com.banyou.backend.entity.Dest;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface DestDao extends PagingAndSortingRepository<Dest, Long> {
 

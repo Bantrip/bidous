@@ -5,8 +5,10 @@
  *******************************************************************************/
 package com.banyou.backend.service.account;
 
-import java.util.List;
-
+import com.banyou.backend.entity.User;
+import com.banyou.backend.repository.UserDao;
+import com.banyou.backend.service.ServiceException;
+import com.banyou.backend.service.account.ShiroDbRealm.ShiroUser;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
@@ -18,10 +20,7 @@ import org.springside.modules.security.utils.Digests;
 import org.springside.modules.utils.Clock;
 import org.springside.modules.utils.Encodes;
 
-import com.banyou.backend.entity.User;
-import com.banyou.backend.repository.UserDao;
-import com.banyou.backend.service.ServiceException;
-import com.banyou.backend.service.account.ShiroDbRealm.ShiroUser;
+import java.util.List;
 
 /**
  * 用户管理类.

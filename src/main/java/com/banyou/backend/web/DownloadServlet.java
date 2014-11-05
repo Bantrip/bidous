@@ -1,20 +1,18 @@
 package com.banyou.backend.web;
 
-import java.io.IOException;
-import java.io.InputStream;
+import com.banyou.backend.service.resource.ImageService;
+import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.io.IOUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
-
-import com.banyou.backend.service.resource.ImageService;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class DownloadServlet extends HttpServlet {
 	@Autowired

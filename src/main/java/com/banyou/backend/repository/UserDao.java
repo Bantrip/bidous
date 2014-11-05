@@ -5,9 +5,8 @@
  *******************************************************************************/
 package com.banyou.backend.repository;
 
-import org.springframework.data.repository.PagingAndSortingRepository;
-
 import com.banyou.backend.entity.User;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface UserDao extends PagingAndSortingRepository<User, Long> {
 	User findByLoginName(String loginName);

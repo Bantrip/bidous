@@ -6,22 +6,16 @@
 package com.banyou.backend.service.resource;
 
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Calendar;
-import java.util.UUID;
-
-import javax.annotation.PostConstruct;
-
+import com.banyou.backend.service.ServiceException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import com.banyou.backend.service.ServiceException;
+import javax.annotation.PostConstruct;
+import java.io.*;
+import java.util.Calendar;
+import java.util.UUID;
 
 
 /**

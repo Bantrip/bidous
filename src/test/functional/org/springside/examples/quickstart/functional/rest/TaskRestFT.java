@@ -5,12 +5,6 @@
  *******************************************************************************/
 package org.springside.examples.quickstart.functional.rest;
 
-import static org.assertj.core.api.Assertions.*;
-
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.Map;
-
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -22,6 +16,13 @@ import org.springside.examples.quickstart.entity.Task;
 import org.springside.examples.quickstart.functional.BaseFunctionalTestCase;
 import org.springside.modules.mapper.JsonMapper;
 import org.springside.modules.test.category.Smoke;
+
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.Map;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 
 /**
  * 任务管理的功能测试, 测试页面JavaScript及主要用户故事流程.

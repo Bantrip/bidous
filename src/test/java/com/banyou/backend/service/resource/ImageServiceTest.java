@@ -1,16 +1,16 @@
 package com.banyou.backend.service.resource;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URL;
-
 import org.junit.Test;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.util.ResourceUtils;
 import org.springside.modules.test.spring.SpringTransactionalTestCase;
-import org.slf4j.Logger;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
 @ContextConfiguration(locations = { "/applicationContext.xml" })
 public class ImageServiceTest extends SpringTransactionalTestCase {
 	private Logger log=LoggerFactory.getLogger(getClass());

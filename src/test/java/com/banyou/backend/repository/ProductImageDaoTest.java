@@ -5,20 +5,18 @@
  *******************************************************************************/
 package com.banyou.backend.repository;
 
-import static org.assertj.core.api.Assertions.*;
-
-import java.util.List;
-
+import com.banyou.backend.entity.Product;
+import com.banyou.backend.entity.ProductImage;
 import org.junit.Test;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springside.modules.test.spring.SpringTransactionalTestCase;
 
-import com.banyou.backend.entity.Product;
-import com.banyou.backend.entity.ProductImage;
+import java.util.List;
 
-import org.slf4j.Logger;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @ContextConfiguration(locations = { "/applicationContext.xml" })
 public class ProductImageDaoTest extends SpringTransactionalTestCase {

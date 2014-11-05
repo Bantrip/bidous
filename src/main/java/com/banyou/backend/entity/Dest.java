@@ -1,16 +1,9 @@
 package com.banyou.backend.entity;
 
-import java.util.List;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
-
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 
 //JPA标识

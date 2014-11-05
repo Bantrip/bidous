@@ -5,11 +5,12 @@
  *******************************************************************************/
 package com.banyou.backend.account;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
-
-import java.util.Date;
-
+import com.banyou.backend.data.UserData;
+import com.banyou.backend.entity.User;
+import com.banyou.backend.repository.UserDao;
+import com.banyou.backend.service.ServiceException;
+import com.banyou.backend.service.account.AccountService;
+import com.banyou.backend.service.account.ShiroDbRealm.ShiroUser;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -19,12 +20,10 @@ import org.mockito.MockitoAnnotations;
 import org.springside.modules.test.security.shiro.ShiroTestUtils;
 import org.springside.modules.utils.Clock.MockClock;
 
-import com.banyou.backend.data.UserData;
-import com.banyou.backend.entity.User;
-import com.banyou.backend.repository.UserDao;
-import com.banyou.backend.service.ServiceException;
-import com.banyou.backend.service.account.AccountService;
-import com.banyou.backend.service.account.ShiroDbRealm.ShiroUser;
+import java.util.Date;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
 
 /**
  * AccountService的测试用例, 测试Service层的业务逻辑.

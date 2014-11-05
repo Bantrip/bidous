@@ -5,17 +5,12 @@
  *******************************************************************************/
 package com.banyou.backend.repository;
 
-import java.util.List;
-
-
-
-
-
+import com.banyou.backend.entity.ProductImage;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.banyou.backend.entity.ProductImage;
+import java.util.List;
 public interface ProductImageDao extends PagingAndSortingRepository<ProductImage, Long> {
 	List<ProductImage> findByProductId(Long id);
 	

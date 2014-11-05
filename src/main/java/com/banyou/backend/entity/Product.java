@@ -1,24 +1,15 @@
 package com.banyou.backend.entity;
 
-import java.math.BigDecimal;
-import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
-
+import com.google.common.collect.Lists;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.google.common.collect.Lists;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
+import java.util.List;
 
 //JPA标识
 @Entity

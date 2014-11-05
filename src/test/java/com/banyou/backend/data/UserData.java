@@ -1,8 +1,7 @@
 package com.banyou.backend.data;
 
-import org.springside.modules.test.data.RandomData;
-
 import com.banyou.backend.entity.User;
+import org.springside.modules.test.data.RandomData;
 
 public class UserData {
 

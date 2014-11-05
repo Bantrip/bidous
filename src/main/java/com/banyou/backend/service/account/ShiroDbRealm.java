@@ -5,15 +5,9 @@
  *******************************************************************************/
 package com.banyou.backend.service.account;
 
-import java.io.Serializable;
-
-import javax.annotation.PostConstruct;
-
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
-import org.apache.shiro.authc.UsernamePasswordToken;
+import com.banyou.backend.entity.User;
+import com.google.common.base.Objects;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -22,8 +16,8 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springside.modules.utils.Encodes;
 
-import com.banyou.backend.entity.User;
-import com.google.common.base.Objects;
+import javax.annotation.PostConstruct;
+import java.io.Serializable;
 
 public class ShiroDbRealm extends AuthorizingRealm {
 

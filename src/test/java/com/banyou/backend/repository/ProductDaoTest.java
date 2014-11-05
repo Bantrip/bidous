@@ -5,14 +5,13 @@
  *******************************************************************************/
 package com.banyou.backend.repository;
 
-import static org.assertj.core.api.Assertions.*;
-
+import com.banyou.backend.entity.Product;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springside.modules.test.spring.SpringTransactionalTestCase;
 
-import com.banyou.backend.entity.Product;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @ContextConfiguration(locations = { "/applicationContext.xml" })
 public class ProductDaoTest extends SpringTransactionalTestCase {

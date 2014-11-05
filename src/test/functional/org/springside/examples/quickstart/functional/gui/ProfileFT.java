@@ -5,8 +5,6 @@
  *******************************************************************************/
 package org.springside.examples.quickstart.functional.gui;
 
-import static org.assertj.core.api.Assertions.*;
-
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.springside.examples.quickstart.functional.BaseSeleniumTestCase;

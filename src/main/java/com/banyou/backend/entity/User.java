@@ -5,20 +5,18 @@
  *******************************************************************************/
 package com.banyou.backend.entity;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.collect.ImmutableList;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.common.collect.ImmutableList;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "ss_user")

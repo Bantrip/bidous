@@ -11,7 +11,7 @@
 	<properties>
 		<!-- 主要依赖库的版本定义 -->
 		<springside.version>4.2.3-SNAPSHOT</springside.version>
-		<spring.version>4.0.5.RELEASE</spring.version>
+		<spring.version>4.1.1.RELEASE</spring.version>
 		<hibernate.version>4.3.5.Final</hibernate.version>
 		<spring-data-jpa.version>1.6.0.RELEASE</spring-data-jpa.version>
 		<tomcat-jdbc.version>7.0.53</tomcat-jdbc.version>
@@ -358,6 +358,11 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- TEST end -->
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-oxm</artifactId>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -465,7 +470,7 @@
 										<exclude>org.springframework</exclude>
 									</excludes>
 									<includes>
-										<include>org.springframework:*:4.0.*</include>
+										<include>org.springframework:*:4.1.*</include>
 									</includes>
 								</bannedDependencies>
 							</rules>

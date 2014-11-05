@@ -5,8 +5,6 @@
  *******************************************************************************/
 package org.springside.examples.quickstart.functional.gui;
 
-import static org.assertj.core.api.Assertions.*;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;

@@ -5,8 +5,9 @@
  *******************************************************************************/
 package com.banyou.backend.web.account;
 
-import javax.validation.Valid;
-
+import com.banyou.backend.entity.User;
+import com.banyou.backend.service.account.AccountService;
+import com.banyou.backend.service.account.ShiroDbRealm.ShiroUser;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,9 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.banyou.backend.entity.User;
-import com.banyou.backend.service.account.AccountService;
-import com.banyou.backend.service.account.ShiroDbRealm.ShiroUser;
+import javax.validation.Valid;
 
 /**
  * 用户修改自己资料的Controller.
