@@ -92,8 +92,17 @@ insert into prod_imgs(id,url,product_id,index)values(5,'"http://d8.yihaodianimg.
 
 
 
+insert into product_desc(id,content,product_id,index,type)
+values(1,'http://d7.yihaodianimg.com/N05/M03/84/97/CgQI0lRW4ueAVzWAAAA7gYPVO4U94500.jpg',1,1,1);
 
+insert into product_desc(id,content,product_id,index,type)
+values(2,'买的是傻逼\n买的是傻逼',1,2,0);
 
+insert into product_desc(id,content,product_id,index,type)
+values(3,'http://d7.yihaodianimg.com/N05/M03/84/97/CgQI0lRW4ueAVzWAAAA7gYPVO4U94500.jpg',2,1,1);
+
+insert into product_desc(id,content,product_id,index,type)
+values(4,'n买的不是傻逼才怪\n买的不是傻逼才怪',2,2,0);
 
 
 commit;

@@ -2,7 +2,23 @@ drop table if exists ss_user;
 drop table if exists product;
 drop table if exists dest;
 drop table if exists product_has_dest;
-drop table if exists upload_pic;
+drop table if exists tag_group;
+drop table if exists tag;
+drop table if exists product_has_tag;
+drop table if exists prod_imgs;
+drop table if exists product_desc;
+
+
+CREATE TABLE product_desc (
+  id bigint auto_increment,
+  content TEXT NULL,
+  product_id BIGINT NOT NULL,
+  index BIGINT NULL COMMENT '排序号',
+  type BIGINT NULL COMMENT '0：desc  1:image',
+  PRIMARY KEY (id),
+  INDEX fk_productdesc_pid_idx (product_id ASC),
+)ENGINE = InnoDB;
+
 
 CREATE TABLE prod_imgs (
   id BIGINT auto_increment,

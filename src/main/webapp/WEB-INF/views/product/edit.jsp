@@ -45,7 +45,17 @@
                         <button class="btn btn-default J_add-img" type="button">添加图片</button>
                     </p>
                     <div class="form-detail-con J_detail">
-                    
+                    	<c:forEach items="${product.descs}" var="desc">
+                    	<div class="item">  
+							 <c:if test="${desc.type==0}">
+                             <textarea class="form-control detail-text" cols="30" rows="3" style="display: inline-block; width: 80%; margin-top: 5px; vertical-align: top;">${desc.content}</textarea>                   
+                             </c:if>
+                             <c:if test="${desc.type==1}">
+                             	<img style="margin-top: 10px;" src="${desc.content}">
+                             </c:if>
+                             <span class="glyphicon glyphicon-remove" style="cursor: pointer"></span>      
+                    	</div>
+                    	</c:forEach>
                     </div>
                 </div>
             </div>
@@ -58,7 +68,7 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">推荐理由</label>
                 <div class="col-sm-8">
-                    <textarea name="recommand" class="form-control J_rcmd-reason" cols="30" rows="5">${product.recommand }</textarea>
+                    <textarea name="recommand" class="form-control J_rcmd-reason" cols="30" rows="5">${product.recommand}</textarea>
                 </div>
             </div>
             <div class="form-group">

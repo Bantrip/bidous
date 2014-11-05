@@ -26,7 +26,7 @@ private List<Dest> dests=Lists.newArrayList();
 private List<ProductImage> images=Lists.newArrayList();
 private List<Tag> tags=Lists.newArrayList();
 
-//private List<ProductDesc> descs;
+private List<ProductDesc> descs=Lists.newArrayList();;
 @NotEmpty
 public String getName() {
 	return name;
@@ -104,6 +104,17 @@ public List<ProductImage> getImages() {
 }
 public void setImages(List<ProductImage> images) {
 	this.images = images;
+}
+
+
+@NotEmpty
+@OneToMany(mappedBy="product")
+@OrderBy("index ASC")
+public List<ProductDesc> getDescs() {
+	return descs;
+}
+public void setDescs(List<ProductDesc> descs) {
+	this.descs = descs;
 }
 @Override
 public String toString() {
