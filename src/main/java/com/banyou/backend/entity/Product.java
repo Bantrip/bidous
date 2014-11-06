@@ -140,6 +140,14 @@ public List<String> getImages(){
 
 @Transient
 @JsonIgnore
+public void setImages(String[] images){
+	String pics=StringUtils.join(images,Product.PIC_SPLIT);
+	this.setPics(pics);
+}
+
+
+@Transient
+@JsonIgnore
 public String getDefaultPic(){
 	return getImages().isEmpty()?"":getImages().get(0);
 }

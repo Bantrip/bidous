@@ -68,7 +68,7 @@ private Logger log=LoggerFactory.getLogger(getClass());
 
 	@RequestMapping(value = "create", method = RequestMethod.POST,produces={"application/json"})
 	public ModelAndView create(Product newProduct
-			,@RequestParam(value="imageUrls") String[] imageUrls
+			//,@RequestParam(value="imageUrls") String[] imageUrls
 			,@RequestParam("destIds") List<Long> destIds
 			, @RequestParam("tagIds") List<Long> tagIds
 			) {
@@ -77,10 +77,10 @@ private Logger log=LoggerFactory.getLogger(getClass());
 		//mv.addObject("result", ret);
 		log.info("mv model is {}", mv.getModel());
 		try {
-			//add image
-			String pics=StringUtils.join(imageUrls,Product.PIC_SPLIT);
-			
-			newProduct.setPics(pics);
+//			//add image
+//			String pics=StringUtils.join(imageUrls,Product.PIC_SPLIT);
+//			
+//			newProduct.setPics(pics);
 			//add dest
 			List<Dest> dests=Lists.newArrayList();
 			for(Long destId:destIds){
