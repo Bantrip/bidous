@@ -5,7 +5,6 @@ drop table if exists product_has_dest;
 drop table if exists tag_group;
 drop table if exists tag;
 drop table if exists product_has_tag;
-drop table if exists prod_imgs;
 drop table if exists product_desc;
 
 
@@ -20,13 +19,7 @@ CREATE TABLE product_desc (
 )ENGINE = InnoDB;
 
 
-CREATE TABLE prod_imgs (
-  id BIGINT auto_increment,
-  url VARCHAR(2000) NULL,
-  product_id BIGINT NOT NULL,
-  index BIGINT NULL,
-  PRIMARY KEY (id),
-)ENGINE = InnoDB;
+
 
 create table product_has_tag (
   id bigint auto_increment,
@@ -77,6 +70,7 @@ create table product (
   merchant_id bigint COMMENT '卖家id',
   url VARCHAR(2000)  COMMENT '目标url',
   stock DECIMAL(10,0) ,
+  pics text,
   PRIMARY KEY (id)
  )ENGINE = InnoDB;
 

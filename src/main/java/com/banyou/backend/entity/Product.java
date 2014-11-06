@@ -1,6 +1,9 @@
 package com.banyou.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Lists;
+
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -8,26 +11,30 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 //JPA标识
 @Entity
 @Table(name = "product")
 public class Product extends IdEntity{
-
+public final static String PIC_SPLIT=",";
+	
 private String name;
 private String recommand;
 private int status;
 private BigDecimal price;
 private String url;
 private int stock;
+private String pics;
 private List<Dest> dests=Lists.newArrayList();
-private List<ProductImage> images=Lists.newArrayList();
 private List<Tag> tags=Lists.newArrayList();
 
 private List<ProductDesc> descs=Lists.newArrayList();;
-@NotEmpty
+
 public String getName() {
 	return name;
 }
@@ -46,7 +53,7 @@ public int getStatus() {
 public void setStatus(int status) {
 	this.status = status;
 }
-@NotNull
+
 public BigDecimal getPrice() {
 	return price;
 }
@@ -64,6 +71,16 @@ public int getStock() {
 }
 public void setStock(int stock) {
 	this.stock = stock;
+}
+
+
+
+
+public String getPics() {
+	return pics;
+}
+public void setPics(String pics) {
+	this.pics = pics;
 }
 // 多对多定义
 @ManyToMany
@@ -96,18 +113,10 @@ public List<Tag> getTags() {
 public void setTags(List<Tag> tags) {
 	this.tags = tags;
 }
-@NotEmpty
-@OneToMany(mappedBy="product")
-@OrderBy("index ASC")
-public List<ProductImage> getImages() {
-	return images;
-}
-public void setImages(List<ProductImage> images) {
-	this.images = images;
-}
 
 
-@NotEmpty
+
+
 @OneToMany(mappedBy="product")
 @OrderBy("index ASC")
 public List<ProductDesc> getDescs() {
@@ -121,9 +130,18 @@ public String toString() {
 	return ToStringBuilder.reflectionToString(this);
 }
 //tools method
+private final static List<String> EMPTY_PICS=Collections.emptyList();
 @Transient
+@JsonIgnore
+public List<String> getImages(){
+	String[] urls=StringUtils.split(getPics(),PIC_SPLIT);
+	return urls==null?EMPTY_PICS:Lists.newArrayList(urls);
+}
+
+@Transient
+@JsonIgnore
 public String getDefaultPic(){
-	return getImages().isEmpty()?"":getImages().get(0).getUrl();
+	return getImages().isEmpty()?"":getImages().get(0);
 }
 
 

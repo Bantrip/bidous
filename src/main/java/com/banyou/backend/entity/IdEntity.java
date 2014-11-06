@@ -19,6 +19,15 @@ public abstract class IdEntity {
 
 	protected Long id;
 
+	public IdEntity() {
+		super();
+	}
+	
+	public IdEntity(Long id) {
+		super();
+		this.id = id;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {

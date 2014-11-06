@@ -16,6 +16,14 @@ public class Dest extends IdEntity {
 	private String name;
 	private int type = TYPE_CONTURY;
 
+	public Dest() {
+	super();
+	}
+
+	public Dest(Long destId) {
+	super(destId);
+	}
+
 	public String getName() {
 		return name;
 	}

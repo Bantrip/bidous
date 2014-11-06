@@ -7,6 +7,7 @@ package com.banyou.backend.service.product;
 
 import com.banyou.backend.entity.Product;
 import com.banyou.backend.repository.ProductDao;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class ProductService {
  * @return
  */
 	public Page<Product> findProducts(int pageSize,int pageNo){
-		Pageable page=new PageRequest(pageNo - 1, pageSize);
+		Pageable page=pageSize>0?new PageRequest(pageNo - 1, pageSize):null;
 		return productDao.findAll(page);
 	}
 	
@@ -51,9 +52,7 @@ public class ProductService {
 	 * @param product
 	 */
 	public void saveProduct(Product product) {
-		if (product.getId() != null) {
-
-		}
+		
 		productDao.save(product);
 
 	}

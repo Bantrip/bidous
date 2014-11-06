@@ -36,7 +36,7 @@
 	<bean id="contentNegotiatingViewResolver"
 		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 		<!-- 设置内容协商管理器 -->
-		<property name="contentNegotiationManager" ref="contentNegotiationManager"></property>
+		<property name="contentNegotiationManager" ref="contentNegotiationManager"/>
 		<!-- 设置默认视图 -->
 		<property name="defaultViews">
 			<list>

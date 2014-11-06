@@ -351,25 +351,27 @@ define(function(require, exports) {
                     data.locList.push($(item).attr('data-cityid'));
                 });
 
-                if(!checkedFormData(data)) {
-                    alert('请把信息填写完整！');
-                    return;
-                }
+                //if(!checkedFormData(data)) {
+                //    alert('请把信息填写完整！');
+                //    return false;
+               // }
 
+                    	console.log($('form').prop('action'));
                 $.ajax({
-                    url: '/bidoushi/product/update',
+                    url: $('form').prop('action'),
                     data: data,
                     type: 'post',
+                    dataType:'json',
                     success: function(r) {
                         if(r.code == 200) {
                             alert('提交成功！');
-                            window.location = '/list.html';
+                           // window.location = '/list.html';
                         } else {
                             alert(r.msg);
                         }
                     }
                 });
-
+                return false;
             });
         };
 

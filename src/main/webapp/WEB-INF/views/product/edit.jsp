@@ -12,7 +12,7 @@
 <body>
 <div class="container">
         <h3>发布商品</h3>
-        <form class="form-horizontal" role="form" action="../${action}" method="post" style="margin-top: 40px;">
+        <form class="form-horizontal" role="form" action="${ctx}/product/${action}" method="post" style="margin-top: 40px;">
         	<input type="hidden" name="id" value="${product.id}"/>
             <div class="form-group">
                 <label class="col-sm-2 control-label">商品标题</label>
@@ -27,7 +27,7 @@
                         <div id="uploadProductImg-queue" class="uploadify-queue">
                     		<c:forEach items="${product.images}" var="image">
                    			<div class="item">
-                   				<img class="img" src="${image.url}">    
+                   				<img class="img" src="${image}">    
                    				<div class="status" style="visibility: visible;"><span class="glyphicon glyphicon-trash" title="删除"></span></div>  
                        		</div>
                         	</c:forEach>
