@@ -313,18 +313,20 @@ define(function(require, exports) {
         initSubmit = function() {
             $('.J_submit').on('click', function() {
                 var data = {};
-                    
+                
+                
+                data.id=getValue($('[name="id"]'));
                 data.name = getValue($('.J_name'));
-                data.imgList = [];
-                data.detail = [];
+                data.images = [];
+                data.descInfos = [];
                 data.price = getValue($('.J_price'));
                 data.reason = getValue($('.J_rcmd-reason'))
-                data.tagList = [];
-                data.locList = [];
-                data.buyUrl = getValue($('.J_buy-url'));
+                data.tagIds = [];
+                data.destIds = [];
+                data.url = getValue($('.J_buy-url'));
 
                 $('.J_product-img-upload img').map(function(i, item) {
-                    data.imgList.push(item.src);
+                    data.images.push(item.src);
                 });
 
                 $('.J_detail .item').each(function(i, item) {
@@ -333,22 +335,23 @@ define(function(require, exports) {
                     if(textarea.length > 0) {
                         var value = getValue(textarea);
                         if(value != '') {
-                            data.detail.push(value);
+                            data.descInfos.push(value);
                         }
                     } else {
-                        self.find('.J_img-list img').each(function(i, item) {
-                            data.detail.push(item.src);
+                        self.find('img').each(function(i, item) {
+                            data.descInfos.push(item.src);
                         });
                     }
 
                 });
+                console.log(data.descInfos);
 
-                $('.J_tag .name').map(function(i, item) {console.log()
-                    data.tagList.push($(item).attr('data-tagid'));
+                $('.J_tag .tag').map(function(i, item) {
+                    data.tagIds.push($(item).attr('data-tagid'));
                 });
 
                 $('.J_loc dd span').map(function(i, item) {
-                    data.locList.push($(item).attr('data-cityid'));
+                    data.destIds.push($(item).attr('data-cityid'));
                 });
 
                 //if(!checkedFormData(data)) {
@@ -356,7 +359,6 @@ define(function(require, exports) {
                 //    return false;
                // }
 
-                    	console.log($('form').prop('action'));
                 $.ajax({
                     url: $('form').prop('action'),
                     data: data,
@@ -369,7 +371,8 @@ define(function(require, exports) {
                         } else {
                             alert(r.msg);
                         }
-                    }
+                    },
+                    traditional:true
                 });
                 return false;
             });

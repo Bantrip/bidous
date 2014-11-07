@@ -5,17 +5,18 @@
  *******************************************************************************/
 package com.banyou.backend.web.product;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import com.banyou.backend.entity.Dest;
 import com.banyou.backend.entity.Product;
 import com.banyou.backend.entity.ProductDesc;
 import com.banyou.backend.entity.Tag;
 import com.banyou.backend.service.product.ProductService;
-import com.banyou.backend.web.AjaxResponse;
-import com.google.common.collect.Lists;
 
-import org.apache.commons.lang3.StringUtils;
+import org.assertj.core.util.Lists;
+import org.assertj.core.util.Sets;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -32,19 +33,16 @@ import org.slf4j.Logger;
 /**
  * 商品管理的Controller, 使用Restful风格的Urls:
  * 
- * List page : GET /product/ 
- * Create page : GET /product/create 
- * Create action :POST /product/create 
- * Update page : GET /product/update/{id} 
- * Update action :POST /product/update 
- * Delete action : GET /product/delete/{id}
+ * List page : GET /product/ Create page : GET /product/create Create action
+ * :POST /product/create Update page : GET /product/update/{id} Update action
+ * :POST /product/update Delete action : GET /product/delete/{id}
  * 
  * @author calvin
  */
 @Controller
 @RequestMapping(value = "/product")
 public class ProductController {
-private Logger log=LoggerFactory.getLogger(getClass());
+	private Logger log = LoggerFactory.getLogger(getClass());
 	private static final String PAGE_SIZE = "-1";
 
 	@Autowired
@@ -66,48 +64,44 @@ private Logger log=LoggerFactory.getLogger(getClass());
 		return "product/edit";
 	}
 
-	@RequestMapping(value = "create", method = RequestMethod.POST,produces={"application/json"})
-	public ModelAndView create(Product newProduct
-			//,@RequestParam(value="imageUrls") String[] imageUrls
-			,@RequestParam("destIds") List<Long> destIds
-			, @RequestParam("tagIds") List<Long> tagIds
-			) {
+	@RequestMapping(value = "create", method = RequestMethod.POST)
+	public ModelAndView create(
+			Product newProduct,
+			@RequestParam(value = "destIds", required = false) List<Long> destIds,
+			@RequestParam(value = "tagIds", required = false) List<Long> tagIds,
+			@RequestParam(value = "descInfos", required = false) List<String> descInfos) {
 		ModelAndView mv = new ModelAndView();
-		//AjaxResponse<Object> ret = new AjaxResponse<Object>();
-		//mv.addObject("result", ret);
 		log.info("mv model is {}", mv.getModel());
-		try {
-//			//add image
-//			String pics=StringUtils.join(imageUrls,Product.PIC_SPLIT);
-//			
-//			newProduct.setPics(pics);
-			//add dest
-			List<Dest> dests=Lists.newArrayList();
-			for(Long destId:destIds){
-				if(destId!=null){
-					dests.add(new Dest(destId));
-				}
+
+		// add dest
+		for (Long destId : Sets
+				.newHashSet(destIds == null ? (List<Long>) Collections.EMPTY_LIST
+						: destIds)) {
+			if (destId != null) {
+				newProduct.getDests().add(new Dest(destId));
 			}
-			newProduct.setDests(dests);
-			
-			//add dest
-			List<Tag> tags=Lists.newArrayList();
-			for(Long tagId:tagIds){
-				if(tagId!=null){
-					tags.add(new Tag(tagId));
-				}
-			}
-			newProduct.setTags(tags);
-			
-			productService.saveProduct(newProduct);
-			mv.addObject("code", AjaxResponse.SUCCESS);
-			mv.addObject("message", "创建成功");
-			mv.addObject("product",null);
-		} catch (Exception ex) {
-			log.error("save error",ex);
-			mv.addObject("code", AjaxResponse.ERROR);
-			mv.addObject("message", ex.getMessage());
 		}
+
+		// add tag
+		for (Long tagId : Sets
+				.newHashSet(tagIds == null ? (List<Long>) Collections.EMPTY_LIST
+						: tagIds)) {
+			if (tagId != null) {
+				newProduct.getTags().add(new Tag(tagId));
+			}
+		}
+
+		// add desc
+		List<ProductDesc> descs = Lists.newArrayList();
+		for (String descInfo : descInfos == null ? (List<String>) Collections.EMPTY_LIST
+				: descInfos) {
+			if (descInfo != null) {
+				descs.add(new ProductDesc(descInfo, descs.size()));
+			}
+		}
+		productService.saveProduct(newProduct,descs);
+		mv.addObject("message", "创建成功");
+
 		return mv;
 	}
 
@@ -120,12 +114,48 @@ private Logger log=LoggerFactory.getLogger(getClass());
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String update(@ModelAttribute("product") Product product,
-			//@RequestParam(value = "productImages") List<Long> checkedRoleList,
-			RedirectAttributes redirectAttributes) {
-		productService.saveProduct(product);
-		redirectAttributes.addFlashAttribute("message", "更新成功");
-		return "redirect:/product/";
+	public ModelAndView update(
+			@ModelAttribute("product") Product product
+			// @RequestParam(value = "productImages") List<Long>
+			// checkedRoleList,
+			,
+			@RequestParam(value = "destIds", required = false) List<Long> destIds,
+			@RequestParam(value = "tagIds", required = false) List<Long> tagIds,
+			@RequestParam(value = "descInfos", required = false) List<String> descInfos) {
+		ModelAndView mv = new ModelAndView();
+		// add dest
+		product.getDests().clear();
+		for (Long destId : Sets
+				.newHashSet(destIds == null ? (List<Long>) Collections.EMPTY_LIST
+						: destIds)) {
+			if (destId != null) {
+				product.getDests().add(new Dest(destId));
+			}
+		}
+
+		// add dest
+		product.getTags().clear();
+		for (Long tagId : Sets
+				.newHashSet(tagIds == null ? (List<Long>) Collections.EMPTY_LIST
+						: tagIds)) {
+			if (tagId != null) {
+				product.getTags().add(new Tag(tagId));
+			}
+		}
+
+		// add desc
+		product.getDescs().clear();
+		List<ProductDesc> descs = Lists.newArrayList();
+		for (String descInfo : descInfos == null ? (List<String>) Collections.EMPTY_LIST: descInfos) {
+			if (descInfo != null) {
+				descs.add(new ProductDesc(descInfo,descs.size()));
+			}
+		}
+
+		productService.saveProduct(product,descs);
+		mv.addObject("message", "更新成功");
+		mv.setViewName("redirect:/product/");
+		return mv;
 	}
 
 	/**

@@ -54,7 +54,7 @@
 
 
 	<!-- JSON视图 -->
-	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+	<bean id="jsonView" class="com.banyou.backend.web.JsonView">
 		<property name="prettyPrint" value="true" />
 	</bean>
 

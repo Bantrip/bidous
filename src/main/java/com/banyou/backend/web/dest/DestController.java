@@ -8,6 +8,7 @@ package com.banyou.backend.web.dest;
 
 import com.banyou.backend.entity.Dest;
 import com.banyou.backend.service.product.DestService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -49,7 +50,7 @@ public class DestController {
 		Page<Dest> dests = service.findDests(pageSize,pageNo);
 		ModelAndView mv=new ModelAndView();
 		mv.setViewName("dest/list");
-		mv.addObject("dests", dests);
+		mv.addObject("result", dests);
 		return mv;
 	}
 
