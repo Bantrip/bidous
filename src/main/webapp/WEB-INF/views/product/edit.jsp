@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <c:set var="staticPath" value="${pageContext.request.contextPath}/static" />
+<c:set var="product" value="${result}" />
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
 <head>
@@ -12,9 +13,10 @@
 <body>
 <div class="container">
         <h3>发布商品</h3>
-        <form class="form-horizontal" role="form" action="${ctx}/product/${action}" method="post" style="margin-top: 40px;">
+        <form class="form-horizontal" role="form" action="${ctx}/product/submit" method="post" style="margin-top: 40px;">
+        	
         	<input type="hidden" name="id" value="${product.id}"/>
-            <div class="form-group">
+        	<div class="form-group">
                 <label class="col-sm-2 control-label">商品标题</label>
                 <div class="col-sm-8">
                     <input name="name" type="text" class="form-control J_name" maxlength="40" placeholder="不超过40个字" value="${product.name} "></div>

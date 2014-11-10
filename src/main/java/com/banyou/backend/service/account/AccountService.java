@@ -56,7 +56,8 @@ public class AccountService {
 	public void registerUser(User user) {
 		entryptPassword(user);
 		user.setRoles("user");
-		user.setRegisterDate(clock.getCurrentDate());
+		user.setCreateTime(clock.getCurrentDate());
+		//user.setRegisterDate(clock.getCurrentDate());
 
 		userDao.save(user);
 	}
@@ -100,6 +101,21 @@ public class AccountService {
 
 		byte[] hashPassword = Digests.sha1(user.getPlainPassword().getBytes(), salt, HASH_INTERATIONS);
 		user.setPassword(Encodes.encodeHex(hashPassword));
+	}
+	
+	/**
+	 * 
+	 * @param plainPassword
+	 * @return salt/password
+	 */
+	public String entryptPassword(String plainPassword){
+		byte[] salt = Digests.generateSalt(SALT_SIZE);
+		String saltStr=Encodes.encodeHex(salt);
+
+		
+		byte[] hashPassword = Digests.sha1(plainPassword.getBytes(), salt, HASH_INTERATIONS);
+		String passwordStr=Encodes.encodeHex(hashPassword);
+		return saltStr+"/"+passwordStr;
 	}
 
 	@Autowired

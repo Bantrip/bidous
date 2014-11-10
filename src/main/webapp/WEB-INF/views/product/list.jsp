@@ -36,7 +36,7 @@
                 </tr>
             </thead>
             <tbody>
-            <c:forEach items="${ products.content}" var="product" >
+            <c:forEach items="${result.content}" var="product" >
                 <tr>
                     <td class="id">${product.id}</td>
                     <td>${product.name}</td>
@@ -57,7 +57,7 @@
                     </c:choose>   
                     </td>
                     <td>
-                        <a href="${ctx}/product/update/${product.id}" class="btn btn-link">编辑</a>
+                        <a href="${ctx}/product/edit/${product.id}" class="btn btn-link">编辑</a>
                         <div class="btn-group">
                             <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">操作<span class="caret"></span></button>
                             <ul class="dropdown-menu">

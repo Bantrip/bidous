@@ -22,7 +22,6 @@ public class ImageServiceTest extends SpringTransactionalTestCase {
 		try {
 			uploadUrl = ResourceUtils.getURL("classpath:caoliu.gif");
 			String url=service.saveResouce("caoliu.gif",uploadUrl.openStream());
-			service.getResourceStreamByUrl(url);
 			log.info("upload url is {}",url);
 			service.getResourceStreamByUrl(url);
 		} catch (FileNotFoundException e) {

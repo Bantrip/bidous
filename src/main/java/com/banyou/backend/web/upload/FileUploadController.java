@@ -1,7 +1,8 @@
 package com.banyou.backend.web.upload;
 
 import com.banyou.backend.service.resource.ImageService;
-import com.banyou.backend.web.AjaxResponse;
+import com.banyou.backend.web.JsonView.AjaxResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,3 +1,4 @@
+--create database if not exists bantrip;
 drop table if exists ss_user;
 drop table if exists product;
 drop table if exists dest;
@@ -6,16 +7,41 @@ drop table if exists tag_group;
 drop table if exists tag;
 drop table if exists product_has_tag;
 drop table if exists product_desc;
+drop table if exists merchant;
+
+create table merchant (
+  id bigint auto_increment,
+  name VARCHAR(500) NULL,
+  type bigint NULL,
+  owner bigint NULL,
+  PRIMARY KEY (id)
+)ENGINE = InnoDB;
 
 
-CREATE TABLE product_desc (
+
+
+
+create table ss_user (
+	id bigint auto_increment,
+	login_name varchar(200) not null unique,
+	name varchar(200) not null,
+	password varchar(255) not null,
+	salt varchar(64) not null,
+	roles varchar(3000) not null,
+	create_time timestamp not null default 0,
+	merchant_id bigint;
+	primary key (id)
+) engine=InnoDB;
+
+
+create table product_desc (
   id bigint auto_increment,
   content TEXT NULL,
   product_id BIGINT NOT NULL,
-  index BIGINT NULL COMMENT '排序号',
-  type BIGINT NULL COMMENT '0：desc  1:image',
+  desc_index BIGINT NULL COMMENT "排序号",
+  type BIGINT NULL COMMENT "0：desc  1:image",
   PRIMARY KEY (id),
-  INDEX fk_productdesc_pid_idx (product_id ASC),
+  INDEX fk_productdesc_pid_idx (product_id ASC)
 )ENGINE = InnoDB;
 
 
@@ -32,7 +58,7 @@ create table tag (
   id bigint auto_increment,
   name VARCHAR(300) NULL COMMENT 'tag名',
   group_id bigint NOT NULL,
-  PRIMARY KEY (id),
+  PRIMARY KEY (id)
 )ENGINE = InnoDB;
 
 
@@ -43,7 +69,7 @@ create table tag_group (
 )ENGINE = InnoDB;
 
 
-CREATE TABLE product_has_dest (
+create table product_has_dest (
   product_id BIGINT NOT NULL,
   dest_id BIGINT NOT NULL,
   id bigint auto_increment NOT NULL,
@@ -77,13 +103,3 @@ create table product (
 
 
 
-create table ss_user (
-	id bigint auto_increment,
-	login_name varchar(64) not null unique,
-	name varchar(64) not null,
-	password varchar(255) not null,
-	salt varchar(64) not null,
-	roles varchar(255) not null,
-	register_date timestamp not null default 0,
-	primary key (id)
-) engine=InnoDB;

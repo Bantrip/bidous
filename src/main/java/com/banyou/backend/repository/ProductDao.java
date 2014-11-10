@@ -5,9 +5,9 @@
  *******************************************************************************/
 package com.banyou.backend.repository;
 
-import com.banyou.backend.entity.Product;
+import com.banyou.backend.entity.Product;import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface ProductDao extends PagingAndSortingRepository<Product, Long> {
+public interface ProductDao extends PagingAndSortingRepository<Product, Long>,JpaSpecificationExecutor<Product> {
 	
 }

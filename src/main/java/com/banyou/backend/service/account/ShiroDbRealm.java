@@ -5,8 +5,10 @@
  *******************************************************************************/
 package com.banyou.backend.service.account;
 
+import com.banyou.backend.entity.Merchant;
 import com.banyou.backend.entity.User;
 import com.google.common.base.Objects;
+
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -17,6 +19,7 @@ import org.apache.shiro.util.ByteSource;
 import org.springside.modules.utils.Encodes;
 
 import javax.annotation.PostConstruct;
+
 import java.io.Serializable;
 
 public class ShiroDbRealm extends AuthorizingRealm {
@@ -32,7 +35,12 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		User user = accountService.findUserByLoginName(token.getUsername());
 		if (user != null) {
 			byte[] salt = Encodes.decodeHex(user.getSalt());
-			return new SimpleAuthenticationInfo(new ShiroUser(user.getId(), user.getLoginName(), user.getName()),
+			Merchant merchant=user.getMerchant();
+			if(merchant==null){
+				merchant=Merchant.NULL;
+			}
+			
+			return new SimpleAuthenticationInfo(new ShiroUser(user.getId(), user.getLoginName(), user.getName(),merchant.getId(),merchant.getName(),merchant.getType()),
 					user.getPassword(), ByteSource.Util.bytes(salt), getName());
 		} else {
 			return null;
@@ -74,11 +82,21 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		public Long id;
 		public String loginName;
 		public String name;
+		public Long merchantId;
+		public String merchantName;
+		public int merchantType;
 
-		public ShiroUser(Long id, String loginName, String name) {
+
+
+		public ShiroUser(Long id, String loginName, String name,
+				Long merchantId, String merchantName, int merchantType) {
+			super();
 			this.id = id;
 			this.loginName = loginName;
 			this.name = name;
+			this.merchantId = merchantId;
+			this.merchantName = merchantName;
+			this.merchantType = merchantType;
 		}
 
 		public String getName() {

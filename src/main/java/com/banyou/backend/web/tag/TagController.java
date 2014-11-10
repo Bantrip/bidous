@@ -50,7 +50,7 @@ public class TagController {
 		Page<Tag> tags = service.findTags(pageSize,pageNo);
 		ModelAndView mv=new ModelAndView();
 		mv.setViewName("tag/list");
-		mv.addObject("tags", tags);
+		mv.addObject("result", tags);
 		return mv;
 	}
 

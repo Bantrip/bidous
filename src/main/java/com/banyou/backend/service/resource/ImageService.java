@@ -7,12 +7,15 @@ package com.banyou.backend.service.resource;
 
 
 import com.banyou.backend.service.ServiceException;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import javax.annotation.PostConstruct;
+
 import java.io.*;
 import java.util.Calendar;
 import java.util.UUID;
@@ -94,6 +97,7 @@ public class ImageService {
 		return separator+year+separator+month+separator+day+separator+pre+"."+fileName;
 		
 	}
+	
 	public void setUrlBase(String urlBase) {
 		this.urlBase = urlBase;
 	}

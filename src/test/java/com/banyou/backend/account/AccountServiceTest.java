@@ -6,11 +6,13 @@
 package com.banyou.backend.account;
 
 import com.banyou.backend.data.UserData;
+import com.banyou.backend.entity.Merchant;
 import com.banyou.backend.entity.User;
 import com.banyou.backend.repository.UserDao;
 import com.banyou.backend.service.ServiceException;
 import com.banyou.backend.service.account.AccountService;
 import com.banyou.backend.service.account.ShiroDbRealm.ShiroUser;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -42,7 +44,7 @@ public class AccountServiceTest {
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
-		ShiroTestUtils.mockSubject(new ShiroUser(3L, "foo", "Foo"));
+		ShiroTestUtils.mockSubject(new ShiroUser(3L, "foo", "Foo",1L,"costca",Merchant.TYPE_OWN));
 	}
 
 	@Test
@@ -55,7 +57,7 @@ public class AccountServiceTest {
 
 		// 验证user的角色，注册日期和加密后的密码都被自动更新了。
 		assertThat(user.getRoles()).isEqualTo("user");
-		assertThat(user.getRegisterDate()).isEqualTo(currentTime);
+		assertThat(user.getCreateTime()).isEqualTo(currentTime);
 		assertThat(user.getPassword()).isNotNull();
 		assertThat(user.getSalt()).isNotNull();
 	}

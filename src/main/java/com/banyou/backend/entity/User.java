@@ -8,13 +8,18 @@ package com.banyou.backend.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.ImmutableList;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
 import java.util.Date;
 import java.util.List;
 
@@ -27,8 +32,7 @@ public class User extends IdEntity {
 	private String password;
 	private String salt;
 	private String roles;
-	private Date registerDate;
-
+	private Merchant merchant;
 	public User() {
 	}
 
@@ -97,13 +101,23 @@ public class User extends IdEntity {
 	}
 
 	// 设定JSON序列化时的日期格式
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
-	public Date getRegisterDate() {
-		return registerDate;
+//	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
+//	public Date getRegisterDate() {
+//		return registerDate;
+//	}
+//
+//	public void setRegisterDate(Date registerDate) {
+//		this.registerDate = registerDate;
+//	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "merchant_id")
+	public Merchant getMerchant() {
+		return merchant;
 	}
 
-	public void setRegisterDate(Date registerDate) {
-		this.registerDate = registerDate;
+	public void setMerchant(Merchant merchant) {
+		this.merchant = merchant;
 	}
 
 	@Override

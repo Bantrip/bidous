@@ -1,11 +1,17 @@
 
 
+insert into ss_user (id, login_name, name, password, salt, roles,merchant_id, create_time) values(1,'huangkemin@msn.com','Admin','691b14d79bf0fa2215f155235df5e670b64394cc','7efbd59d9741d34f','admin,user',1,'2012-06-04 01:00:00');
+insert into ss_user (id, login_name, name, password, salt, roles,merchant_id, create_time) values(2,'user@gmail.com','小柚皮','2488aa0c31c624687bd9928e0a5d29e7d1ed520b','6d65d24122c30500','admin,user',1,'2012-06-04 02:00:00');
+insert into ss_user (id,login_name, name, password, salt, roles, merchant_id,create_time) values(3,'ceshi@gmail.com','测试商家','0962e7f15cc506de09ea84684695fce3fbe43c44','882567e6cb0dde41','user',2,'2014-11-11 05:44:03');
 
-insert into ss_user (id, login_name, name, password, salt, roles, register_date) values(1,'admin','Admin','691b14d79bf0fa2215f155235df5e670b64394cc','7efbd59d9741d34f','admin','2012-06-04 01:00:00');
-insert into ss_user (id, login_name, name, password, salt, roles, register_date) values(2,'user','Calvin','2488aa0c31c624687bd9928e0a5d29e7d1ed520b','6d65d24122c30500','user','2012-06-04 02:00:00');
+insert into merchant(id,name,type,creater,create_time)values(1,'伴游天下',0,1,'2014-11-11 10:13:12');
+insert into merchant(id,name,type,creater,create_time)values(2,'测试商家',1,1,'2014-11-11 10:13:12');
 
-insert into product (id,name,pics, recommand , status ,  price,url,stock) values (1,'18岁大学生陪你游山玩水','http://d7.yihaodianimg.com/N07/M01/02/26/ChEbvFRW9E2Aca1_AAFD67mmpHU46600.jpg,http://d9.yihaodianimg.com/N07/M0B/14/A6/CgQI0FRR5zeAMuOeAABA6o7BXsA62300.jpg,http://d9.yihaodianimg.com/N05/M03/7E/FC/CgQI0lRTZf6AYV8jAAFkCYOAHJI56000.jpg','no zuo no die',1,22.3,'http://www.yhd.com',0);
-insert into product (id,name,pics, recommand , status ,  price,url,stock) values (2,'高科技产品','http://d7.yihaodianimg.com/N05/M03/84/97/CgQI0lRW4ueAVzWAAAA7gYPVO4U94500.jpg,http://d8.yihaodianimg.com/V00/M08/37/74/CgQDsFQrdMyAbyBCAAA2fEMvzqc32800.jpg','why you try',0,1222.3,'htp://www.yhd.com',0);
+
+insert into product (id,name,merchant_id,pics, recommand , status ,  price,url,creater,create_time) 
+values (1,'18岁大学生陪你游山玩水－测试商家商品',2,'http://d7.yihaodianimg.com/N07/M01/02/26/ChEbvFRW9E2Aca1_AAFD67mmpHU46600.jpg,http://d9.yihaodianimg.com/N07/M0B/14/A6/CgQI0FRR5zeAMuOeAABA6o7BXsA62300.jpg,http://d9.yihaodianimg.com/N05/M03/7E/FC/CgQI0lRTZf6AYV8jAAFkCYOAHJI56000.jpg','no zuo no die',1,22.3,'http://www.yhd.com',3,'2014-11-11 10:13:12');
+insert into product (id,name,merchant_id,pics, recommand , status ,  price,url,creater,create_time) 
+values (2,'高科技产品－自营商家商品',1,'http://d7.yihaodianimg.com/N05/M03/84/97/CgQI0lRW4ueAVzWAAAA7gYPVO4U94500.jpg,http://d8.yihaodianimg.com/V00/M08/37/74/CgQDsFQrdMyAbyBCAAA2fEMvzqc32800.jpg','why you try',0,1222.3,'htp://www.yhd.com',1,'2014-11-11 10:13:12');
 
 
 
@@ -87,17 +93,13 @@ insert into product_has_tag(product_id,tag_id)values(2,22);
 
 
 
-insert into product_desc(id,content,product_id,index,type)
-values(1,'http://d7.yihaodianimg.com/N05/M03/84/97/CgQI0lRW4ueAVzWAAAA7gYPVO4U94500.jpg',1,1,1);
+insert into product_desc(id,content,product_id,desc_index,type) values(1,'http://d7.yihaodianimg.com/N05/M03/84/97/CgQI0lRW4ueAVzWAAAA7gYPVO4U94500.jpg',1,1,1);
 
-insert into product_desc(id,content,product_id,index,type)
-values(2,'买的是傻逼\n买的是傻逼',1,2,0);
+insert into product_desc(id,content,product_id,desc_index,type) values(2,'买的是傻逼\n买的是傻逼',1,2,0);
 
-insert into product_desc(id,content,product_id,index,type)
-values(3,'http://d7.yihaodianimg.com/N05/M03/84/97/CgQI0lRW4ueAVzWAAAA7gYPVO4U94500.jpg',2,1,1);
+insert into product_desc(id,content,product_id,desc_index,type) values(3,'http://d7.yihaodianimg.com/N05/M03/84/97/CgQI0lRW4ueAVzWAAAA7gYPVO4U94500.jpg',2,1,1);
 
-insert into product_desc(id,content,product_id,index,type)
-values(4,'n买的不是傻逼才怪\n买的不是傻逼才怪',2,2,0);
+insert into product_desc(id,content,product_id,desc_index,type) values(4,'n买的不是傻逼才怪\n买的不是傻逼才怪',2,2,0);
 
 
 commit;

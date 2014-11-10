@@ -56,7 +56,10 @@
  	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 	
 	
-	
+	<bean id="imageService" class="com.banyou.backend.service.resource.ImageService" >
+		<property name="pathBase" value="${upload.pathBase}"/>
+		<property name="urlBase"  value="${upload.urlBase}"/>
+	</bean>
 	
 	<!-- production环境 -->
  	<beans profile="production" >

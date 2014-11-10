@@ -1,5 +1,6 @@
 package com.banyou.backend.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -7,7 +8,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.apache.commons.lang3.StringUtils;
-import org.eclipse.jetty.util.StringUtil;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //JPA标识
 @Entity
@@ -17,7 +19,7 @@ public class ProductDesc extends IdEntity {
 	public final static int TYPE_IMG = 1;
 	private String content;
 	private int index;
-	private int type=TYPE_DESC;
+	private int type = TYPE_DESC;
 	private Product product;
 
 	public ProductDesc() {
@@ -25,17 +27,17 @@ public class ProductDesc extends IdEntity {
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public ProductDesc(String content, int index) {
 		this.content = content;
 		this.index = index;
-		//图片
-		if(StringUtils.isNotBlank(content)&&StringUtil.startsWithIgnoreCase(content, "http://")){
-			this.type=TYPE_IMG;
+		// 图片
+		if (StringUtils.isNotBlank(content)
+				&& StringUtils.startsWithIgnoreCase(content, "http://")) {
+			this.type = TYPE_IMG;
 		}
-		
-	}
 
+	}
+@Column(name="desc_index")
 	public int getIndex() {
 		return index;
 	}
@@ -52,6 +54,7 @@ public class ProductDesc extends IdEntity {
 		this.content = content;
 	}
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "product_id")
 	public Product getProduct() {

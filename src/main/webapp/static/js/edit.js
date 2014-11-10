@@ -324,7 +324,6 @@ define(function(require, exports) {
                 data.tagIds = [];
                 data.destIds = [];
                 data.url = getValue($('.J_buy-url'));
-
                 $('.J_product-img-upload img').map(function(i, item) {
                     data.images.push(item.src);
                 });

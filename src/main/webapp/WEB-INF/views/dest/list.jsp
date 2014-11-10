@@ -33,7 +33,7 @@
                 </tr>
             </thead>
             <tbody>
-            <c:forEach items="${dests.content}" var="dest" >
+            <c:forEach items="${result.content}" var="dest" >
                 <tr>
                     <td class="id">${dest.id}</td>
                     <td>${dest.name}</td>

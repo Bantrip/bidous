@@ -11,43 +11,26 @@
 </head>
 
 <body>
-	<form id="loginForm" action="${ctx}/login" method="post" class="form-horizontal">
-	<%
-	String error = (String) request.getAttribute(FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME);
-	if(error != null){
-	%>
-		<div class="alert alert-error input-medium controls">
-			<button class="close" data-dismiss="alert">×</button>登录失败，请重试.
-		</div>
-	<%
-	}
-	%>
-		<div class="control-group">
-			<label for="username" class="control-label">名称:</label>
-			<div class="controls">
-				<input type="text" id="username" name="username"  value="${username}" class="input-medium required"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label for="password" class="control-label">密码:</label>
-			<div class="controls">
-				<input type="password" id="password" name="password" class="input-medium required"/>
-			</div>
-		</div>
-				
-		<div class="control-group">
-			<div class="controls">
-				<label class="checkbox" for="rememberMe"><input type="checkbox" id="rememberMe" name="rememberMe"/> 记住我</label>
-				<input id="submit_btn" class="btn btn-primary" type="submit" value="登录"/> <a class="btn" href="${ctx}/register">注册</a>
-			 	<span class="help-block">(管理员: <b>admin/admin</b>, 普通用户: <b>user/user</b>)</span>
-			</div>
-		</div>
+<div class="container">
+	<form id="loginForm" action="${ctx}/login" method="post"  class="form-horizontal" role="form" >
+	<div class="form-group">
+    	<label class="col-sm-2 control-label" for="email">Email:</label>
+    	<div class="col-sm-10">
+          <input type="email" id="email" name="username"  value="${username}" class="form-control input-medium required"/>
+  		</div>
+  	</div>
+  	<div class="form-group">
+    	<label class="col-sm-2 control-label" for="password">密码:</label>
+    	<div class="col-sm-10">
+          <input type="password" id="password" name="password"  value="${password}" class="form-control input-medium required"/>
+  		</div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-primary">登录</button> <a class="btn btn-link" href="${ctx}/register">注册</a>
+        </div>
+    </div>
 	</form>
-
-	<script>
-		$(document).ready(function() {
-			$("#loginForm").validate();
-		});
-	</script>
+</div>
 </body>
 </html>
