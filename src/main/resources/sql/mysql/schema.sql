@@ -1,4 +1,3 @@
---create database if not exists bantrip;
 drop table if exists ss_user;
 drop table if exists product;
 drop table if exists dest;
@@ -32,7 +31,7 @@ create table ss_user (
 	roles varchar(3000) not null,
 		creater bigint,
 	create_time timestamp,
-	merchant_id bigint;
+	merchant_id bigint,
 	primary key (id)
 ) engine=InnoDB;
 

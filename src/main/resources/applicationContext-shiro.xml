@@ -9,6 +9,11 @@
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="shiroDbRealm" />
 		<property name="cacheManager" ref="shiroEhcacheManager" />
+		<property name="sessionManager" ref="userSessionManager"/>
+	</bean>
+	<bean id="userSessionManager" class="com.banyou.backend.service.account.ShiroSessionManager">
+	<property name="path" value="${cookie.path}"/>
+	<property name="domain" value="${cookie.domain}"/>
 	</bean>
 
 	<!-- 項目自定义的Realm, 所有accountService依赖的dao都需要用depends-on声明 -->
