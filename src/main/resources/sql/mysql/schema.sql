@@ -14,6 +14,8 @@ create table merchant (
   name VARCHAR(500) NULL,
   type bigint NULL,
   owner bigint NULL,
+  	creater bigint,
+	create_time timestamp,
   PRIMARY KEY (id)
 )ENGINE = InnoDB;
 
@@ -28,7 +30,8 @@ create table ss_user (
 	password varchar(255) not null,
 	salt varchar(64) not null,
 	roles varchar(3000) not null,
-	create_time timestamp not null default 0,
+		creater bigint,
+	create_time timestamp,
 	merchant_id bigint;
 	primary key (id)
 ) engine=InnoDB;
@@ -40,6 +43,8 @@ create table product_desc (
   product_id BIGINT NOT NULL,
   desc_index BIGINT NULL COMMENT "排序号",
   type BIGINT NULL COMMENT "0：desc  1:image",
+  	creater bigint,
+	create_time timestamp,
   PRIMARY KEY (id),
   INDEX fk_productdesc_pid_idx (product_id ASC)
 )ENGINE = InnoDB;
@@ -58,6 +63,8 @@ create table tag (
   id bigint auto_increment,
   name VARCHAR(300) NULL COMMENT 'tag名',
   group_id bigint NOT NULL,
+  	creater bigint,
+	create_time timestamp,
   PRIMARY KEY (id)
 )ENGINE = InnoDB;
 
@@ -65,6 +72,8 @@ create table tag (
 create table tag_group (
   id bigint auto_increment,
   name VARCHAR(300) NULL comment 'tag组名',
+  	creater bigint,
+	create_time timestamp,
   PRIMARY KEY (id)
 )ENGINE = InnoDB;
 
@@ -81,6 +90,8 @@ create table dest (
   id bigint auto_increment,
   name VARCHAR(200)  COMMENT '地点名',
   type bigint  COMMENT '类型 0 国内 1 境外',
+  	creater bigint,
+	create_time timestamp,
   PRIMARY KEY (id)
  )ENGINE = InnoDB;
 
@@ -97,6 +108,8 @@ create table product (
   url VARCHAR(2000)  COMMENT '目标url',
   stock DECIMAL(10,0) ,
   pics text,
+  	creater bigint,
+	create_time timestamp,
   PRIMARY KEY (id)
  )ENGINE = InnoDB;
 
