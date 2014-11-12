@@ -5,10 +5,16 @@
  *******************************************************************************/
 package com.banyou.backend.repository;
 
+import com.banyou.backend.entity.Merchant;
 import com.banyou.backend.entity.Product;
+import com.banyou.backend.service.account.ShiroDbRealm.ShiroUser;
+
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springside.modules.test.security.shiro.ShiroTestUtils;
 import org.springside.modules.test.spring.SpringTransactionalTestCase;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,11 +24,28 @@ public class ProductDaoTest extends SpringTransactionalTestCase {
 
 	@Autowired
 	private ProductDao productDao;
+	
+	@Before
+	public void setUp() {
+		MockitoAnnotations.initMocks(this);
+		ShiroTestUtils.mockSubject(new ShiroUser(1L, "foo", "Foo",1L,"costca",Merchant.TYPE_OWN));
+	}
 
 	@Test
 	public void findProductById() throws Exception {
 		Product product = productDao.findOne(1L);
 	
 		assertThat(product).isNotNull();	
+		}
+	
+	
+	@Test
+	public void changeProductStatus() throws Exception {
+		Product product = productDao.findOne(1L);
+		int size=productDao.updateStatus(1L, product.getStatus()+1,product.getStatus());
+		 product = productDao.findOne(1L);
+		
+		assertThat(product.getStatus()).isEqualTo(2);	
+		assertThat(size).isEqualTo(1);	
 		}
 }

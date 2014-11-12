@@ -8,15 +8,6 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-
-
-
-
-
-
-
-
-
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
@@ -30,20 +21,18 @@ import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 import javax.persistence.Transient;
 
-
 //JPA标识
 @Entity
 @Table(name = "product")
 public class Product extends IdEntity {
 	public final static String PIC_SPLIT = ",";
-	
+	// 创建
 	public final static int STATUS_NEW = 0;
-	
+	// 审核中
 	public final static int STATUS_IN_AUDIT = 1;
+	// 审核通过
 	public final static int STATUS_OK = 2;
-	
 
-	
 	private String name;
 	private String recommand;
 	private int status;
@@ -96,8 +85,6 @@ public class Product extends IdEntity {
 	public void setUrl(String target) {
 		this.url = target;
 	}
-
-
 
 	public Integer getStock() {
 		return stock;
@@ -191,6 +178,12 @@ public class Product extends IdEntity {
 	@JsonIgnore
 	public String getDefaultPic() {
 		return getImages().isEmpty() ? "" : getImages().get(0);
+	}
+
+	@Transient
+	public boolean isSeller(Long merchantId) {
+		return this.merchantId != null && merchantId != null
+				&& merchantId.equals(this.merchantId);
 	}
 
 }

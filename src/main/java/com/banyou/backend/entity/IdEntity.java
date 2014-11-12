@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -60,5 +61,8 @@ public abstract class IdEntity implements AduitEntity{
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-	
+	@Transient
+	public boolean isCreater(Long userId){
+		return userId!=null&&this.creater!=null&&this.creater.equals(userId);
+	}
 }

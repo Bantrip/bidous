@@ -13,7 +13,7 @@
 <body>
 <div class="container">
         <h3>发布商品</h3>
-        <form class="form-horizontal" role="form" action="${ctx}/product/submit" method="post" style="margin-top: 40px;">
+        <form class="form-horizontal" role="form" action="${ctx}/product/save" method="post" style="margin-top: 40px;">
         	
         	<input type="hidden" name="id" value="${product.id}"/>
         	<div class="form-group">

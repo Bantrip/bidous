@@ -17,6 +17,7 @@ import com.banyou.backend.web.UserContext;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -47,7 +48,7 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
-	@RequestMapping(method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value="list")
 	public ModelAndView list(
 			@RequestParam(value = "page", defaultValue = "1") int pageNo,
 			@RequestParam(value = "page.size", defaultValue = PAGE_SIZE) int pageSize,
@@ -73,9 +74,19 @@ public class ProductController {
 		}
 		return "product/edit";
 	}
+	
+	
+	@RequestMapping(value = "show", method = RequestMethod.GET)
+	public ModelAndView show(@ModelAttribute("product") Product product) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("result",product );
+		
+		return mv;
+	}
+	
 
-	@RequestMapping(value = "submit", method ={ RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView submit(
+	@RequestMapping(value = "save", method ={ RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView save(
 			@ModelAttribute("product") Product product,
 			@RequestParam(value = "destIds", required = false) List<Long> destIds,
 			@RequestParam(value = "tagIds", required = false) List<Long> tagIds,
@@ -119,20 +130,44 @@ public class ProductController {
 		return mv;
 	}
 	
+	@RequiresRoles("admin")
+	@RequestMapping(value = "pass", method ={ RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView pass(
+			@ModelAttribute("product") Product product
+		) {
+		ModelAndView mv = new ModelAndView();
+		productService.passProduct(product,UserContext.getUser());
+		mv.addObject("message", "审核成功");
+		mv.setViewName("/product");
+		return mv;
+	}
+	
+	
+	
 	@RequestMapping(value = "audit", method ={ RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView audit(
 			@ModelAttribute("product") Product product
 		) {
 		ModelAndView mv = new ModelAndView();
-		log.info("mv model is {}", mv.getModel());
 
-		
+		productService.passProduct(product,UserContext.getUser());
 
-		productService.auditProduct(product);
-		mv.addObject("message", "保存成功");
+		mv.addObject("message", "提交审核通过");
 		mv.setViewName("/product");
 		return mv;
 	}
+	
+	@RequestMapping(value = "delete", method ={ RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView delete(
+			@ModelAttribute("product") Product product
+		) {
+		ModelAndView mv = new ModelAndView();
+		productService.deleteProduct(product,UserContext.getUser());
+		mv.addObject("message", "删除成功");
+		mv.setViewName("/product");
+		return mv;
+	}
+	
 	
 
 	/**
@@ -141,7 +176,7 @@ public class ProductController {
 	 * 因为仅update()方法的form中有id属性，因此仅在update时实际执行.
 	 */
 	@ModelAttribute
-	public void getTask(
+	public void getProduct(
 			@RequestParam(value = "id", defaultValue = "-1") Long id,
 			Model model) {
 		if (id != -1) {

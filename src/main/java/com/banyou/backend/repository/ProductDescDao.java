@@ -5,7 +5,6 @@
  *******************************************************************************/
 package com.banyou.backend.repository;
 
-import com.banyou.backend.entity.Product;
 import com.banyou.backend.entity.ProductDesc;
 
 import org.springframework.data.jpa.repository.Modifying;
@@ -14,6 +13,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface ProductDescDao extends PagingAndSortingRepository<ProductDesc, Long> {
 	@Modifying
-	@Query("delete ProductDesc pd where pd.product.id=?")
+	@Query("delete ProductDesc pd where pd.product.id=?0")
 	public int deleteByProductId(Long id);
 }

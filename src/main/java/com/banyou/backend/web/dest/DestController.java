@@ -43,7 +43,7 @@ public class DestController {
 	@Autowired
 	private DestService service;
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="list")
 	public ModelAndView list(@RequestParam(value = "page", defaultValue = "1") int pageNo,
 			@RequestParam(value = "page.size", defaultValue = PAGE_SIZE) int pageSize, Model model,
 			ServletRequest request) {

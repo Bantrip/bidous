@@ -51,8 +51,17 @@ public class ProductService {
 
 	private ProductDescDao productDescDao;
 
+	/**
+	 * 获取单个商品信息
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public Product getProduct(Long id) {
-		return productDao.findOne(id);
+
+		Product product = productDao.findOne(id);
+		checkReadPermission(product, UserContext.getUser());
+		return product;
 	}
 
 	/**
@@ -88,20 +97,41 @@ public class ProductService {
 
 		return productDao.findAll(spec, page);
 	}
-	
-	public void auditProduct(Product product){
-		
-	}
+
 	/**
 	 * 
 	 * @param product
 	 */
-	public void deleteProduct(Product product){
+	public void auditProduct(Product product, ShiroUser user) {
+		checkWritePermission(product, user);
+		productDao.updateStatus(product.getId(), Product.STATUS_IN_AUDIT,
+				product.getStatus());
+
+	}
+
+	/**
+	 * 审核通过
+	 * 
+	 * @param product
+	 * @param user
+	 */
+	public void passProduct(Product product, ShiroUser user) {
+
+		checkWritePermission(product, user);
+		productDao.updateStatus(product.getId(), Product.STATUS_OK,
+				product.getStatus());
+	}
+
+	/**
+	 * 
+	 * @param product
+	 */
+	public void deleteProduct(Product product, ShiroUser user) {
 		product.getTags().clear();
 		product.getDests().clear();
 		productDao.delete(product);
 		productDescDao.deleteByProductId(product.getId());
-		
+
 	}
 
 	/**
@@ -112,15 +142,11 @@ public class ProductService {
 	public void saveProduct(Product product, List<ProductDesc> descs,
 			ShiroUser user) {
 		if (product.getId() != null) {
-			// 非本人或者本商户，或者admin，不能保存
-			if (user.id != product.getCreater()
-					&& user.merchantId != product.getMerchantId()
-					&& UserContext.isSuper()) {
-				throw new ShiroException("不可保存");
-			}
-			// 状态设置为待审核
+			// 检查是否有操作权
+			checkWritePermission(product, user);
+			// 非管理员修改，且状态是审核通过的，将状态设置为待审核
 			if (product.getStatus() >= Product.STATUS_OK
-					&& UserContext.isSuper()) {
+					&& !UserContext.isSuper()) {
 				product.setStatus(Product.STATUS_IN_AUDIT);
 			}
 			// 删除关联的表
@@ -140,6 +166,33 @@ public class ProductService {
 			productDescDao.save(desc);
 		}
 
+	}
+
+	/**
+	 * 检查是否有读的权限
+	 * 
+	 * @param product
+	 * @param user
+	 */
+	private void checkReadPermission(Product product, ShiroUser user) {
+		//创建者，商家，或者超级用户有写的权限
+		if (!product.isCreater(user.id) && !product.isSeller(user.merchantId)
+				&& !UserContext.isSuper()) {
+			throw new ShiroException("没有权限");
+		}
+	}
+
+	/**
+	 * 检查是否写的权限
+	 * 
+	 * @param product
+	 * @param user
+	 */
+	private void checkWritePermission(Product product, ShiroUser user) {
+		//只有商家或者超级用户有写的权限
+		if (!product.isSeller(user.merchantId) && !UserContext.isSuper()) {
+			throw new ShiroException("没有权限");
+		}
 	}
 
 	@Autowired
