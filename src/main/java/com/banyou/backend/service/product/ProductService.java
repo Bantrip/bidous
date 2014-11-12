@@ -88,6 +88,21 @@ public class ProductService {
 
 		return productDao.findAll(spec, page);
 	}
+	
+	public void auditProduct(Product product){
+		
+	}
+	/**
+	 * 
+	 * @param product
+	 */
+	public void deleteProduct(Product product){
+		product.getTags().clear();
+		product.getDests().clear();
+		productDao.delete(product);
+		productDescDao.deleteByProductId(product.getId());
+		
+	}
 
 	/**
 	 * 保存商品

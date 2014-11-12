@@ -118,7 +118,21 @@ public class ProductController {
 		mv.setViewName("/product");
 		return mv;
 	}
+	
+	@RequestMapping(value = "audit", method ={ RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView audit(
+			@ModelAttribute("product") Product product
+		) {
+		ModelAndView mv = new ModelAndView();
+		log.info("mv model is {}", mv.getModel());
 
+		
+
+		productService.auditProduct(product);
+		mv.addObject("message", "保存成功");
+		mv.setViewName("/product");
+		return mv;
+	}
 	
 
 	/**

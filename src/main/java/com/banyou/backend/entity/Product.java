@@ -182,7 +182,6 @@ public class Product extends IdEntity {
 	}
 
 	@Transient
-	@JsonIgnore
 	public void setImages(String[] images) {
 		String pics = StringUtils.join(images, Product.PIC_SPLIT);
 		this.setPics(pics);
