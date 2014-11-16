@@ -55,17 +55,17 @@ public class NewAccount {
 
 	@Test
 	public void buildTest(){
-		String loginName="huangkemin1985@gmail.com";
-		String name="大菠萝";
-		String password="k4hvdqpt1985";
-		String role="";
+		String loginName="xiaoyoupi";
+		String name="小油皮";
+		String password="12315";
+		String role="admin";
 		Map<String,String>map=Maps.newHashMap();
 		map.put("loginname", loginName);
 		map.put("name", name);
 		String[] passwordInfos=service.entryptPassword(password).split("/");
 		map.put("password", passwordInfos[1]);
 		map.put("salt", passwordInfos[0]);
-		map.put("roles", "admin" );
+		map.put("roles", role );
 		map.put("date", DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
 		System.out.println(new Template().doTemplate(map));
 		

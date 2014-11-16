@@ -72,7 +72,7 @@
                                     <a href="${ctx}/product/audit?id=${product.id}" class="J_ope" data-type="submit">提交审核</a>
                                     </c:if>
                                     <c:if test="${product.status==1 }">
-                                    <a href="${ctx}/product/pass?id=${product.id}" class="J_ope" data-type="audit">审核</a>
+                                    <a href="${ctx}/product/pass?id=${product.id}" class="J_ope" data-type="audit">审核通过</a>
                                     </c:if>
                                      <c:if test="${product.status==1 }">
                                     <a href="${ctx}/product/reject?id=${product.id}" class="J_ope" data-type="reject">驳回</a>
