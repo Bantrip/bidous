@@ -7,14 +7,19 @@ package com.banyou.backend.web.product;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import com.banyou.backend.entity.Dest;
 import com.banyou.backend.entity.Product;
 import com.banyou.backend.entity.ProductDesc;
 import com.banyou.backend.entity.Tag;
+import com.banyou.backend.entity.TagGroup;
+import com.banyou.backend.service.product.DestService;
 import com.banyou.backend.service.product.ProductService;
+import com.banyou.backend.service.product.TagService;
 import com.banyou.backend.web.UserContext;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
 import org.apache.shiro.authz.annotation.RequiresRoles;
@@ -47,7 +52,10 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
-
+	@Autowired
+	private TagService tagService;
+	@Autowired
+	private DestService destService;
 	@RequestMapping(value="list")
 	public ModelAndView list(
 			@RequestParam(value = "page", defaultValue = "1") int pageNo,
@@ -71,7 +79,20 @@ public class ProductController {
 	public String edit(@PathVariable("id") Long id, Model model) {
 		if(id!=null){
 			model.addAttribute("result",productService.getProduct(id) );
+					}
+		
+		Map<Long,TagGroup> tags=Maps.newHashMap();
+		for(Tag tag:tagService.findTags(-1, 0).getContent()){
+			TagGroup group=tags.get(tag.getGroup().getId());
+			if(group==null){
+				group=tag.getGroup();
+				tags.put(group.getId(), group);				
+			}
+			group.getTags().add(tag);
 		}
+		model.addAttribute("tagGroups",tags.values());
+		model.addAttribute("dests",destService.findDests(-1, 0).getContent());
+
 		return "product/edit";
 	}
 	
@@ -138,11 +159,21 @@ public class ProductController {
 		ModelAndView mv = new ModelAndView();
 		productService.passProduct(product,UserContext.getUser());
 		mv.addObject("message", "审核成功");
-		mv.setViewName("/product");
+		mv.setViewName("redirect:/product/list");
 		return mv;
 	}
 	
-	
+	@RequiresRoles("admin")
+	@RequestMapping(value = "reject", method ={ RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView reject(
+			@ModelAttribute("product") Product product
+		) {
+		ModelAndView mv = new ModelAndView();
+		productService.reject(product,UserContext.getUser());
+		mv.addObject("message", "打回审核");
+		mv.setViewName("redirect:/product/list");
+		return mv;
+	}
 	
 	@RequestMapping(value = "audit", method ={ RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView audit(
@@ -150,10 +181,10 @@ public class ProductController {
 		) {
 		ModelAndView mv = new ModelAndView();
 
-		productService.passProduct(product,UserContext.getUser());
+		productService.auditProduct(product,UserContext.getUser());
 
-		mv.addObject("message", "提交审核通过");
-		mv.setViewName("/product");
+		mv.addObject("message", "提交审核成功");
+		mv.setViewName("redirect:/product/list");
 		return mv;
 	}
 	
@@ -164,7 +195,7 @@ public class ProductController {
 		ModelAndView mv = new ModelAndView();
 		productService.deleteProduct(product,UserContext.getUser());
 		mv.addObject("message", "删除成功");
-		mv.setViewName("/product");
+		mv.setViewName("redirect:/product/list");
 		return mv;
 	}
 	

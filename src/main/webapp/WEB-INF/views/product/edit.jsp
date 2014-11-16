@@ -76,18 +76,19 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">筛选Tag</label>
                 <div class="col-sm-8 form-add-result">
-                    <button class="btn btn-default" type="button" data-toggle="modal" data-target="#modalTag">编辑</button>
+                    <button class="btn btn-default J_btn-edit-tag" type="button" data-toggle="modal" data-target="#modalTag">编辑</button>
                     <dl class="well selected clearfix <c:if test="${empty product.tags}">Hide</c:if> J_tag">
                     
                         <dt>已选tag：</dt>
+                        <dd>
                         <c:if test="${not empty product.tags}">
                         <c:forEach items="${product.tags}" var="tag">
                         
-                        <dd>
                             <p>${tag.group.name}：<span class="tag" data-tagid="${tag.id}">${tag.name} </span></p>
-                        </dd>
+                        
                         </c:forEach>
                         </c:if>
+                        </dd>
                     </dl>
                         
                     
@@ -96,16 +97,19 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">所属目的地</label>
                 <div class="col-sm-8 form-add-result">
-                    <button class="btn btn-default" type="button" data-toggle="modal" data-target="#modalLocation">编辑</button>
+                    <button class="btn btn-default J_btn-edit-loc" type="button" data-toggle="modal" data-target="#modalLocation">编辑</button>
                     <dl class="well selected clearfix <c:if test="${empty product.dests}">Hide</c:if> J_loc">
                         <dt>已选目的地：</dt>
-                         <c:if test="${not empty product.dests}">
-                        <c:forEach items="${product.dests}"  var="dest">
+                       
                         <dd>
+                          <c:if test="${not empty product.dests}">
+                         <c:forEach items="${product.dests}"  var="dest">
                             <span data-cityid="${dest.id}">${dest.name}</span>
+                         </c:forEach>
+                         </c:if>
                         </dd>
-                        </c:forEach>
-                        </c:if>
+                       
+                        
                     </dl>
                 </div>
             </div>
@@ -127,67 +131,33 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="false">&times;</span>
                         <span class="sr-only">Close</span>
                     </button>
                     <h4 class="modal-title">编辑tag</h4>
                 </div>
                 <div class="modal-body">
-
                     <div class="clearfix">
                         <ul class="nav nav-tabs nav-stacked col-sm-2 J_tag-group" role="tablist">
-                            <li class="active">
-                                <a href="#home" role="tab" data-toggle="tab">
-                                    <span class="name">人群</span>
+                        	<c:forEach items="${tagGroups}" var="tagGroup" varStatus="tagGroupStatus">
+                        	<li <c:if test='${tagGroupStatus.index==0}'>class="active"</c:if>>
+                                <a href="#tagGroup-${tagGroup.id}" role="tab" data-toggle="tab">
+                                    <span class="name">${tagGroup.name}</span>
                                     <span class="glyphicon glyphicon-ok Hide"></span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#profile" role="tab" data-toggle="tab">
-                                    <span class="name">Profile</span>
-                                    <span class="glyphicon glyphicon-ok Hide"></span>
-                                </a>
-                            </li>
+                        	</c:forEach>
                         </ul>
 
                         <!-- Tab panes -->
                         <div class="tab-content col-sm-10 J_tag-con">
-                            <div class="tab-pane clearfix active" id="home">
-                                <label class="item">
-                                    <input type="radio" class="input-tag" name="tag-1" data-tagid="1"> 男士</label>
-                                <label class="item">
-                                    <input type="radio" class="input-tag" name="tag-1" data-tagid="1"> 女士</label>
-                                <label class="item">
-                                    <input type="radio" class="input-tag" name="tag-1" data-tagid="1"> 女士</label>
-                                <label class="item">
-                                    <input type="radio" class="input-tag" name="tag-1" data-tagid="1"> 女士</label>
-                                <label class="item">
-                                    <input type="radio" class="input-tag" name="tag-1" data-tagid="1"> 女士</label>
-                                <label class="item">
-                                    <input type="radio" class="input-tag" name="tag-1" data-tagid="1"> 女士</label>
-                                <label class="item">
-                                    <input type="radio" class="input-tag" name="tag-1" data-tagid="1"> 女士</label>
-                                <label class="item">
-                                    <input type="radio" class="input-tag" name="tag-1" data-tagid="1"> 女士</label>
+                        	<c:forEach items="${tagGroups}" var="tagGroup" varStatus="tagGroupStatus">
+                        	  <div class="tab-pane clearfix <c:if test='${tagGroupStatus.index==0}'>active</c:if>" id="tagGroup-${tagGroup.id}">
+                        	  	<c:forEach items="${tagGroup.tags}" var="tag" varStatus="tagStatus">
+                                <label class="item"><input type="radio" class="input-tag" name="tag-${tagGroup.id}" data-tagid="${tag.id }"> ${tag.name}</label>
+                                </c:forEach>
                             </div>
-                            <div class="tab-pane clearfix" id="profile">
-                                <label class="item">
-                                    <input type="radio" class="input-tag" name="tag-2" data-tagid="1"> 1男士</label>
-                                <label class="item">
-                                    <input type="radio" class="input-tag" name="tag-2" data-tagid="1"> 女士</label>
-                                <label class="item">
-                                    <input type="radio" class="input-tag" name="tag-2" data-tagid="1"> 女士</label>
-                                <label class="item">
-                                    <input type="radio" class="input-tag" name="tag-2" data-tagid="1"> 女士</label>
-                                <label class="item">
-                                    <input type="radio" class="input-tag" name="tag-2" data-tagid="1"> 女士</label>
-                                <label class="item">
-                                    <input type="radio" class="input-tag" name="tag-2" data-tagid="1"> 女士</label>
-                                <label class="item">
-                                    <input type="radio" class="input-tag" name="tag-2" data-tagid="1"> 女士</label>
-                                <label class="item">
-                                    <input type="radio" class="input-tag" name="tag-2" data-tagid="1"> 女士</label>
-                            </div>
+                        	</c:forEach>
                         </div>
                     </div>
                 </div>
@@ -211,17 +181,17 @@
                 </div>
                 <div class="modal-body clearfix">
                     <div class="block result">
-                        <div class="search">
+                        <div class="search hidden">
                             <input type="text" class="form-control" class="J_input-search">
-                            <p class="type"><label class="item"><input type="radio" name="searchType" checked data-type="1"> 城市</label><label class="item"><input type="radio" name="searchType" data-type="1"> 国家</label></p>
+                            <p class="type">
+                            <label class="item"><input type="radio" name="searchType" checked data-type="1"> 城市</label>
+                            <label class="item"><input type="radio" name="searchType" data-type="2"> 国家</label></p>
                         </div>
                         <div class="list">
                             <ul class="list-unstyled J_list-loc">
-                                <li><a href="javascript:;" data-cityid="1">北京</a></li>
-                                <li><a href="javascript:;" data-cityid="1">北京</a></li>
-                                <li><a href="javascript:;" data-cityid="1">北京</a></li>
-                                <li><a href="javascript:;" data-cityid="1">北京</a></li>
-                                <li><a href="javascript:;" data-cityid="1">北京</a></li>
+                            	<c:forEach items="${dests}" var="dest">
+                            		<li><a href="javascript:;" data-cityid="${dest.id}">${dest.name}</a></li>
+                            	</c:forEach>
                             </ul>
                         </div>
                     </div>

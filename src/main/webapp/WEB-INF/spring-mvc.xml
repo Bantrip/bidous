@@ -88,7 +88,7 @@
 	<mvc:default-servlet-handler />
 
 	<!-- 定义无需Controller的url<->view直接映射 -->
-	<mvc:view-controller path="/" view-name="redirect:/product" />
+	<mvc:view-controller path="/" view-name="redirect:/product/list" />
 
 	<!-- 将Controller抛出的异常转到特定View, 保持SiteMesh的装饰效果 -->
 	<bean

@@ -99,7 +99,7 @@ public class ProductService {
 	}
 
 	/**
-	 * 
+	 * 提交审核
 	 * @param product
 	 */
 	public void auditProduct(Product product, ShiroUser user) {
@@ -122,6 +122,19 @@ public class ProductService {
 				product.getStatus());
 	}
 
+	
+	/**
+	 * 审核拒绝审核
+	 * 
+	 * @param product
+	 * @param user
+	 */
+	public void reject(Product product, ShiroUser user) {
+
+		checkWritePermission(product, user);
+		productDao.updateStatus(product.getId(), Product.STATUS_NEW,
+				product.getStatus());
+	}
 	/**
 	 * 
 	 * @param product

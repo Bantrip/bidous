@@ -23,6 +23,11 @@
                 </div>
             </div>
         </form> -->
+        <div class="row">
+        <div class="col-md-4"><a class="btn btn-primary" href="${ctx}/product/edit" >创建商品</a></div>
+        </div>
+        <div class="row">
+        <div class="col-md-12">
         <table class="table table-bordered table-condensed table-striped J_list">
             <thead>
                 <tr>
@@ -62,10 +67,16 @@
                             <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">操作<span class="caret"></span></button>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a class="J_ope" data-type="del" >删除</a>
-                                     <a class="J_ope" data-type="submit">提交审核</a>
-                                    <a class="J_ope" data-type="audit">审核</a>
-                                    <a class="J_ope" data-type="reject">驳回</a>
+                                    <a href="${ctx}/product/delete?id=${product.id}" class="J_ope" data-type="del" >删除</a>
+                                    <c:if test="${product.status==0 }">
+                                    <a href="${ctx}/product/audit?id=${product.id}" class="J_ope" data-type="submit">提交审核</a>
+                                    </c:if>
+                                    <c:if test="${product.status==1 }">
+                                    <a href="${ctx}/product/pass?id=${product.id}" class="J_ope" data-type="audit">审核</a>
+                                    </c:if>
+                                     <c:if test="${product.status==1 }">
+                                    <a href="${ctx}/product/reject?id=${product.id}" class="J_ope" data-type="reject">驳回</a>
+                                    </c:if>
                                 </li>
                             </ul>
                         </div>
@@ -74,6 +85,8 @@
                 </c:forEach>
             </tbody>
         </table>
+        </div>
+        </div>
     </div>
 	
     <script>seajs.use('list')</script>    

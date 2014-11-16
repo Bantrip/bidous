@@ -10,7 +10,9 @@
 <meta http-equiv="Cache-Control" content="no-store" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
+<meta name="basePath" content="${pageContext.request.contextPath}" />
 <c:set var="staticPath" value="${pageContext.request.contextPath}/static" />
+<meta name="staticPath" content="${staticPath}" />
 <link rel="stylesheet" href="${staticPath}/css/lib/bootstrap.css"/>
     <script src="${staticPath}/js/lib/jquery.js"></script>
     <script src="${staticPath}/js/lib/jquery.uploadify.js"></script>
@@ -24,6 +26,9 @@
     	/* 	 ori();
     		 this.settings.flash_url='${staticPath}/js/uploadify.swf';
     	 } */
+    	 var _serverConfig={
+    			 baseUrl:''
+    	 }
      })(this);</script>
     <script src="${staticPath}/js/lib/bootstrap.js"></script>
     <script src="${staticPath}/js/lib/sea.js"></script>

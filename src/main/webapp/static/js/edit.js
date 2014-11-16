@@ -43,7 +43,7 @@ define(function(require, exports) {
             var tpl = '';
 
             data.forEach(function(item, index) {
-                tpl += ('<p>' + item.group + '：<span class="name" data-tagid="' + item.tagId + '">' + item.tag + '</span></p>');
+                tpl += ('<p>' + item.group + '：<span class="tag"  data-tagid="' + item.tagId + '">' + item.tag + '</span></p>');
             });
 
             return tpl;
@@ -143,13 +143,13 @@ define(function(require, exports) {
                 setCatStatus = function(index) {
                     tagGroups.eq(index).find('.glyphicon-ok').removeClass('Hide');
                 };
-
+               // $('#modalTag').modal();
             $('.J_btn-edit-tag').on('click', function() {
                 var tagIdList = tagRtCon.find('.tag').map(function(i, item) {
                     return $(item).attr('data-tagid');
                 }).get();
 
-                $('#modalTag').modal();
+               
                 tagCon.find('.input-tag').each(function(i, item) {
                     var self = $(item);
                     if(tagIdList.indexOf(self.attr('data-tagid')) > -1) {
@@ -177,6 +177,7 @@ define(function(require, exports) {
             });
 
             $('.J_submit-tag').on('click', function() {
+            	var tagArr=[];
                 tagCons.each(function(index) {
                     var tag = $(this).find('.input-tag:checked');
                     if(tag.length > 0) {
@@ -187,10 +188,10 @@ define(function(require, exports) {
                         });
                     }
                 });
-
                 if(tagArr.length > 0) {
+                	console.log(tagArr);
                     var html = tagRtTpl(tagArr);
-                    tagRtCon.removeClass('Hide').find('dd').html(html);
+                    tagRtCon.removeClass('Hide').children('dd').html(html);
                 }
             });
         },
@@ -231,7 +232,7 @@ define(function(require, exports) {
                         return item.cityId;
                     });
 
-                $('#modalLocation').modal();
+               
                 list.find('a').each(function(i, item) {
                     var self = $(this);
                     if(cityIdList.indexOf(self.attr('data-cityid')) > -1) {
@@ -282,13 +283,23 @@ define(function(require, exports) {
             });
 
             $('.J_submit-loc').on('click', function() {
+            	var cityArr=[];
                 selectedList.find('.name').each(function(i, item) {
                     var self = $(item),
                         cityId = self.attr('data-cityid'),
                         cityName = self.text();
-                        locWrap.find('dd').html('<span data-cityid="' + cityId + '">' + cityName + '</span>');
+                    	cityArr.push({id:cityId,name:cityName});
                 });
-                locWrap.removeClass('Hide');
+                var html="";
+                cityArr.forEach(function(item){
+                	html+='<span data-cityid="' + item.id + '">' + item.name + '</span>';
+                });
+                locWrap.find('dd').html(html);
+                if(cityArr.length){
+                	locWrap.removeClass('Hide');
+                }else{
+                	locWrap.addClass('Hide');
+                }
             });
         },
 
@@ -320,7 +331,7 @@ define(function(require, exports) {
                 data.images = [];
                 data.descInfos = [];
                 data.price = getValue($('.J_price'));
-                data.reason = getValue($('.J_rcmd-reason'))
+                data.recommand = getValue($('.J_rcmd-reason'))
                 data.tagIds = [];
                 data.destIds = [];
                 data.url = getValue($('.J_buy-url'));
@@ -343,7 +354,6 @@ define(function(require, exports) {
                     }
 
                 });
-                console.log(data.descInfos);
 
                 $('.J_tag .tag').map(function(i, item) {
                     data.tagIds.push($(item).attr('data-tagid'));
@@ -366,7 +376,7 @@ define(function(require, exports) {
                     success: function(r) {
                         if(r.code == 200) {
                             alert('提交成功！');
-                           // window.location = '/list.html';
+                           window.location = $('meta[name="basePath"]').attr('content')+'/product/list';
                         } else {
                             alert(r.msg);
                         }

@@ -185,5 +185,14 @@ public class Product extends IdEntity {
 		return this.merchantId != null && merchantId != null
 				&& merchantId.equals(this.merchantId);
 	}
+	@Transient
+	public boolean hasTagGroup(Long tagGroupId){
+		for(Tag tag:getTags()){
+			if(tag.getGroup().getId().equals(tagGroupId)){
+				return true;
+			}
+		}
+		return false;
+	}
 
 }

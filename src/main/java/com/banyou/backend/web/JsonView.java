@@ -10,6 +10,8 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.spi.LoggerFactory;
+
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.google.common.collect.Sets;
 
@@ -17,6 +19,7 @@ public class JsonView extends org.springframework.web.servlet.view.json.MappingJ
 	private String errorName="exception";
 	private String contentName="result";
 	private String messageName="message";
+	private org.slf4j.Logger log=org.slf4j.LoggerFactory.getLogger(getClass());
 	@PostConstruct
 	public void init(){
 		super.setModelKeys(Sets.newHashSet(contentName,messageName,errorName));
@@ -36,6 +39,7 @@ public class JsonView extends org.springframework.web.servlet.view.json.MappingJ
 			Object ex=item.get(errorName);
 			if(ex!=null&& ex instanceof Exception){
 				Exception e=(Exception) ex;
+				log.error("out put ajax error",e);
 				ret.setResult(null);
 				ret.setCode(AjaxResponse.ERROR);
 				ret.setMessage(e.getMessage());
