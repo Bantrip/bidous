@@ -57,6 +57,20 @@ public class ProductService {
 	 * @param id
 	 * @return
 	 */
+	public Product getFrontProduct(Long id) {
+
+		Product product = productDao.findOne(id);
+		//checkReadPermission(product, UserContext.getUser());
+		return product;
+	}
+	
+	
+	/**
+	 * 获取单个商品信息
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public Product getProduct(Long id) {
 
 		Product product = productDao.findOne(id);

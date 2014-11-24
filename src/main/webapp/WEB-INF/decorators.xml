@@ -4,6 +4,9 @@
 		<pattern>/static/*</pattern>
 		<pattern>/api/*</pattern>
 	</excludes>
+	<decorator name="front" page="front.jsp">
+		<pattern>/front/*</pattern>
+	</decorator>
 	
 	<decorator name="default" page="default.jsp">
 		<pattern>/*</pattern>

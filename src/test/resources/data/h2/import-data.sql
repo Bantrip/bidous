@@ -5,6 +5,7 @@ insert into ss_user (id, login_name, name, password, salt, roles,merchant_id, cr
 insert into ss_user (id,login_name, name, password, salt, roles, merchant_id,create_time) values(3,'ceshi@gmail.com','测试商家','0962e7f15cc506de09ea84684695fce3fbe43c44','882567e6cb0dde41','user',2,'2014-11-11 05:44:03');
 insert into ss_user (id, login_name, name, password, salt, roles,merchant_id, create_time) values(4,'iverzhang','睿','9b6a0f9a94ff5009f8f0568bbdb001c9e3057568','f0216cf04ef27309','admin,user',1,'2014-11-16 18:06:44');
 insert into ss_user (id, login_name, name, password, salt, roles,merchant_id, create_time) values(5,'zhuyongliangioro@163.com','小油皮','763b3cd536b6ac1cc448e8eb46b4e02970ef8434','76c69c28e4f8adfc','admin,user',1,'2014-11-16 18:08:21');
+insert into ss_user (id, login_name, name, password, salt, roles, create_time) values(6,'iverzhang@163.com','睿','8a2ba9c13a39ab896427dd8cfba443f09a59fecc','82268ae99a58db21','admin,user','2014-11-22 14:55:31');
 
 insert into merchant(id,name,type,creater,create_time)values(1,'伴游天下',0,1,'2014-11-11 10:13:12');
 insert into merchant(id,name,type,creater,create_time)values(2,'测试商家',1,1,'2014-11-11 10:13:12');

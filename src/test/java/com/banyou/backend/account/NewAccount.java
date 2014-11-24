@@ -55,10 +55,10 @@ public class NewAccount {
 
 	@Test
 	public void buildTest(){
-		String loginName="xiaoyoupi";
-		String name="小油皮";
-		String password="12315";
-		String role="admin";
+		String loginName="iverzhang@163.com";
+		String name="睿";
+		String password="123456";
+		String role="admin,user";
 		Map<String,String>map=Maps.newHashMap();
 		map.put("loginname", loginName);
 		map.put("name", name);
@@ -68,8 +68,8 @@ public class NewAccount {
 		map.put("roles", role );
 		map.put("date", DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
 		System.out.println(new Template().doTemplate(map));
-		
-		//2012-06-04 01:00:00
+	
+				//2012-06-04 01:00:00
 		
 //	Proxy.newProxyInstance(loader, interfaces, h);
 //		service.setUserDao(
