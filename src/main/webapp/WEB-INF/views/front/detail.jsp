@@ -23,7 +23,7 @@
           <div class="small">
             <ul class="Fix J_trigger-img">
             	<c:forEach items="${result.images }" var="imgVar" varStatus="stat">
-              		<li <c:if test="${ stat.index==0}"> class="on"</c:if> data-url="xxx"><img src="${imgVar}"></li>
+              		<li <c:if test="${ stat.index==0}"> class="on"</c:if> data-url="${imgVar}"><img src="${imgVar}"></li>
               	</c:forEach>
             </ul>
           </div>
