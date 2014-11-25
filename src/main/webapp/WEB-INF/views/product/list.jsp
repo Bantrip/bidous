@@ -43,7 +43,7 @@
             <tbody>
             <c:forEach items="${result.content}" var="product" >
                 <tr>
-                    <td class="id">${product.id}</td>
+                    <td class="id"><a href="http://backend.bantrip.com/front/detail/${product.id}">${product.id}</a></td>
                     <td>${product.name}</td>
                     <td><img src="${product.defaultPic}" alt=""></td>
                     <td><fmt:formatNumber pattern="#.##" value="${product.price}"></fmt:formatNumber></td>
