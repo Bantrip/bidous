@@ -41,6 +41,9 @@
             <button type="button" class="btn"><span class="icon-cart"></span>加入购物车</button>
           </p>
           -->
+          <p class="ope">
+            <a href="" class="btn">去购买</a>
+          </p>
         </div>
         <dl class="reason">
           <dt>推荐理由</dt>
