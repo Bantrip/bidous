@@ -9,14 +9,15 @@ package com.banyou.backend.service.resource;
 import com.banyou.backend.service.ServiceException;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import javax.annotation.PostConstruct;
 
 import java.io.*;
+import java.util.Base64;
 import java.util.Calendar;
 import java.util.UUID;
 
@@ -94,7 +95,8 @@ public class ImageService {
 		String day=String.valueOf(now.get(Calendar.DAY_OF_MONTH));
 		
 		String pre=UUID.randomUUID().toString();
-		return separator+year+separator+month+separator+day+separator+pre+"."+fileName;
+		
+		return separator+year+separator+month+separator+day+separator+pre+'.'+FilenameUtils.getExtension(fileName);
 		
 	}
 	
