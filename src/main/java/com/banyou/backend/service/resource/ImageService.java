@@ -17,7 +17,6 @@ import org.springframework.util.Assert;
 import javax.annotation.PostConstruct;
 
 import java.io.*;
-import java.util.Base64;
 import java.util.Calendar;
 import java.util.UUID;
 

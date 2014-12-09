@@ -12,7 +12,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 
-import javax.imageio.stream.ImageInputStreamImpl;
 @ContextConfiguration(locations = { "/applicationContext.xml" })
 public class ImageServiceTest extends SpringTransactionalTestCase {
 	private Logger log=LoggerFactory.getLogger(getClass());
