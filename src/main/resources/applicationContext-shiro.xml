@@ -21,6 +21,7 @@
 		<property name="accountService" ref="accountService"/>
 	</bean>
 	
+	
 	<!-- Shiro Filter -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />

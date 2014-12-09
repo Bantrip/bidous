@@ -5,6 +5,17 @@
 2. eclipse 下运行src/test/java/com/banyou/backend/BackendServer
 3  执行bin下h2.sh，查看控制台
 
+#权限
+角色
+1.admin 大王，无敌模式
+2.manager 网站运营
+3.merchant 商家
+4.user     网站用户
+
+
+
+
+
 #路径
 1. base 路径 127.0.0.1:8081/bidoushi/
 

@@ -9,14 +9,15 @@ package com.banyou.backend.service.resource;
 import com.banyou.backend.service.ServiceException;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import javax.annotation.PostConstruct;
 
 import java.io.*;
+import java.util.Base64;
 import java.util.Calendar;
 import java.util.UUID;
 
@@ -90,11 +91,12 @@ public class ImageService {
 	private String createRealPath(String fileName){
 		Calendar now=Calendar.getInstance();
 		String year=String.valueOf(now.get(Calendar.YEAR));
-		String month=String.valueOf(now.get(Calendar.MONTH));
+		String month=String.valueOf(now.get(Calendar.MONTH)+1);
 		String day=String.valueOf(now.get(Calendar.DAY_OF_MONTH));
 		
 		String pre=UUID.randomUUID().toString();
-		return separator+year+separator+month+separator+day+separator+pre+"."+fileName;
+		
+		return separator+year+separator+month+separator+day+separator+pre+'.'+FilenameUtils.getExtension(fileName);
 		
 	}
 	
@@ -102,6 +104,9 @@ public class ImageService {
 		this.urlBase = urlBase;
 	}
 	public void setPathBase(String pathBase) {
+		if(pathBase.indexOf("~")==0){
+			pathBase=System.getProperty("user.home")+pathBase.substring(1);
+		}
 		this.pathBase = pathBase;
 	}
 	public String getUrlBase() {
