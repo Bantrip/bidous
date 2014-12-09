@@ -91,7 +91,7 @@ public class ImageService {
 	private String createRealPath(String fileName){
 		Calendar now=Calendar.getInstance();
 		String year=String.valueOf(now.get(Calendar.YEAR));
-		String month=String.valueOf(now.get(Calendar.MONTH));
+		String month=String.valueOf(now.get(Calendar.MONTH)+1);
 		String day=String.valueOf(now.get(Calendar.DAY_OF_MONTH));
 		
 		String pre=UUID.randomUUID().toString();
@@ -104,6 +104,9 @@ public class ImageService {
 		this.urlBase = urlBase;
 	}
 	public void setPathBase(String pathBase) {
+		if(pathBase.indexOf("~")==0){
+			pathBase=System.getProperty("user.home")+pathBase.substring(1);
+		}
 		this.pathBase = pathBase;
 	}
 	public String getUrlBase() {

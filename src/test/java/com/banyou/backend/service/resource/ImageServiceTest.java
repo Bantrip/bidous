@@ -11,6 +11,8 @@ import org.springside.modules.test.spring.SpringTransactionalTestCase;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+
+import javax.imageio.stream.ImageInputStreamImpl;
 @ContextConfiguration(locations = { "/applicationContext.xml" })
 public class ImageServiceTest extends SpringTransactionalTestCase {
 	private Logger log=LoggerFactory.getLogger(getClass());
@@ -20,10 +22,12 @@ public class ImageServiceTest extends SpringTransactionalTestCase {
 	public void testUpload(){
 		URL uploadUrl;
 		try {
-			uploadUrl = ResourceUtils.getURL("classpath:caoliu.gif");
+			uploadUrl = ResourceUtils.getURL("classpath:草榴.gif");
 			String url=service.saveResouce("caoliu.gif",uploadUrl.openStream());
 			log.info("upload url is {}",url);
+		
 			service.getResourceStreamByUrl(url);
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
