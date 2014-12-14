@@ -42,7 +42,7 @@
           </p>
           -->
           <p class="ope">
-            <a href="" class="btn">去购买</a>
+            <a href="${result.url}" class="btn">去购买</a>
           </p>
         </div>
         <dl class="reason">
