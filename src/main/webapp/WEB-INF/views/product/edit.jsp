@@ -120,7 +120,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-primary J_submit">提交</button>
+                    <button type="button" class="btn btn-primary J_submit">提交</button>
                 </div>
             </div>
         </form>
@@ -154,7 +154,7 @@
                         	<c:forEach items="${tagGroups}" var="tagGroup" varStatus="tagGroupStatus">
                         	  <div class="tab-pane clearfix <c:if test='${tagGroupStatus.index==0}'>active</c:if>" id="tagGroup-${tagGroup.id}">
                         	  	<c:forEach items="${tagGroup.tags}" var="tag" varStatus="tagStatus">
-                                <label class="item"><input type="radio" class="input-tag" name="tag-${tagGroup.id}" data-tagid="${tag.id }"> ${tag.name}</label>
+                                <label class="item"><input type="checkbox" class="input-tag" name="tag-${tagGroup.id}" data-tagid="${tag.id }"> ${tag.name}</label>
                                 </c:forEach>
                             </div>
                         	</c:forEach>

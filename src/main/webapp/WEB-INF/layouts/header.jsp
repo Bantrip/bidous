@@ -12,7 +12,9 @@
                     <li class="active">
                         <a href="${ctx}/product/">商品管理</a>
                     </li>
-                    <li class="active">
+                </ul>
+                <ul class="nav navbar-nav pull-right">
+                    <li>
                         <a href="${ctx}/logout">登出</a>
                     </li>
                 </ul>

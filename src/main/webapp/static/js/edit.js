@@ -43,7 +43,11 @@ define(function(require, exports) {
             var tpl = '';
 
             data.forEach(function(item, index) {
-                tpl += ('<p>' + item.group + '：<span class="tag"  data-tagid="' + item.tagId + '">' + item.tag + '</span></p>');
+                tpl += ('<p>' + item.group + '：');
+                item.tags.forEach(function(item) {
+                    tpl += ('<span class="tag"  data-tagid="' + item.tagId + '">' + item.tag + '</span>');
+                });
+                tpl += '</p>';
             });
 
             return tpl;
@@ -179,17 +183,23 @@ define(function(require, exports) {
             $('.J_submit-tag').on('click', function() {
             	var tagArr=[];
                 tagCons.each(function(index) {
-                    var tag = $(this).find('.input-tag:checked');
-                    if(tag.length > 0) {
-                        tagArr.push({
+                    var tag = $(this).find('.input-tag:checked'),
+                        data = {
                             group: tagGroups.eq(index).find('.name').text(),
-                            tagId: tag.attr('data-tagid'),
-                            tag: tag.parent().text().trim()
+                            tags: []
+                        };
+                    
+                    tag.each(function(i, item) {
+                        var self = $(item);
+                        data.tags.push({
+                            tagId: self.attr('data-tagid'),
+                            tag: self.parent().text().trim()
                         });
-                    }
+                    });
+                    
+                    tagArr.push(data);
                 });
                 if(tagArr.length > 0) {
-                	console.log(tagArr);
                     var html = tagRtTpl(tagArr);
                     tagRtCon.removeClass('Hide').children('dd').html(html);
                 }

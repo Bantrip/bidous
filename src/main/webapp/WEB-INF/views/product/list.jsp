@@ -23,9 +23,7 @@
                 </div>
             </div>
         </form> -->
-        <div class="row">
-        <div class="col-md-4"><a class="btn btn-primary" href="${ctx}/product/edit" >创建商品</a></div>
-        </div>
+        <p><a class="btn btn-primary" href="${ctx}/product/edit" >创建商品</a></p>
         <div class="row">
         <div class="col-md-12">
         <table class="table table-bordered table-condensed table-striped J_list">
@@ -45,7 +43,7 @@
                 <tr>
                     <td class="id"><a href="http://backend.bantrip.com/front/detail/${product.id}">${product.id}</a></td>
                     <td>${product.name}</td>
-                    <td><img src="${product.defaultPic}" alt=""></td>
+                    <td><img width="200" src="${product.defaultPic}" alt=""></td>
                     <td><fmt:formatNumber pattern="#.##" value="${product.price}"></fmt:formatNumber></td>
                     <td>第三方</td>
                     <td>
