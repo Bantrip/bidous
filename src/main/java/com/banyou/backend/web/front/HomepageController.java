@@ -11,7 +11,7 @@ import com.banyou.backend.entity.AdContent;
 import com.banyou.backend.service.ad.AdService;
 import com.banyou.backend.service.product.DestService;
 
-import org.assertj.core.util.Arrays;
+import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,7 +47,7 @@ public class HomepageController {
 		String lunboCode = "INDEX_LUNBO";
 		Long[] ids = (Long[]) session.getAttribute(DEST_CODE);
 		
-		if (!Arrays.isNullOrEmpty(ids)) {
+		if (!ArrayUtils.isEmpty(ids)) {
 			model.addAttribute("dests", destService.findDests(ids));
 		}
 		List<AdContent> lunboAD = adService.getAdPositionByCode(lunboCode)

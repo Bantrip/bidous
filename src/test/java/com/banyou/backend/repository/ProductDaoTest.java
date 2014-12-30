@@ -41,9 +41,9 @@ public class ProductDaoTest extends SpringTransactionalTestCase {
 	
 	@Test
 	public void changeProductStatus() throws Exception {
-		Product product = productDao.findOne(1L);
-		int size=productDao.updateStatus(1L, product.getStatus()+1,product.getStatus());
-		 product = productDao.findOne(1L);
+		Product product = productDao.findOne(3L);
+		int size=productDao.updateStatus(3L, product.getStatus()+1,product.getStatus());
+		 product = productDao.findOne(3L);
 		
 		assertThat(product.getStatus()).isEqualTo(2);	
 		assertThat(size).isEqualTo(1);	
