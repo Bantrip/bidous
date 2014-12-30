@@ -16,7 +16,7 @@ public class AdContent extends IdEntity {
 	private String url;
 	private String pic;
 	private String text;
-@Column(name="ad_index")
+
 	private int index;
 
 	public String getUrl() {
@@ -54,7 +54,7 @@ public class AdContent extends IdEntity {
 	}
 
 
-
+	@Column(name="ad_index")
 	public int getIndex() {
 		return index;
 	}

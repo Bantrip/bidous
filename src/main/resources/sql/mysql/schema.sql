@@ -119,18 +119,18 @@ CREATE TABLE  ad_position (
   id bigint auto_increment,
   code VARCHAR(100) NULL,
   name VARCHAR(500) NULL,
-  pageId bitint,
+  pageId bigint,
   creater bigint,
   create_time timestamp,
   PRIMARY KEY (id))ENGINE = InnoDB;
   
-CREATE TABLE ad_content (
+CREATE TABLE ad_content_test (
    id bigint auto_increment,
   url VARCHAR(500) NULL,
   pic VARCHAR(500) NULL,
   text VARCHAR(500) NULL,
   exts VARCHAR(1000) NULL,
-  index INT NULL,
+  ad_index INT NULL,
   ad_position_id INT NOT NULL,
   creater bigint,
   create_time timestamp,

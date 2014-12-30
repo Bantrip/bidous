@@ -126,7 +126,7 @@ CREATE TABLE ad_content (
   pic VARCHAR(500) NULL,
   text VARCHAR(500) NULL,
   exts VARCHAR(1000) NULL,
-  index INT NULL,
+  ad_index INT NULL,
   ad_position_id INT NOT NULL,
   creater bigint,
   create_time timestamp,

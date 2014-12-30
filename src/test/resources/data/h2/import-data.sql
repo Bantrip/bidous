@@ -109,7 +109,7 @@ insert into product_desc(id,content,product_id,desc_index,type) values(4,'n买�
 
 
 insert into ad_position(id,code,name)values(1,'INDEX_LUNBO','首页轮播');
-insert into ad_content(url,pic,text,index,ad_position_id)values('http://cms.yhd.com/cmsPage/show.do?pageId=126992','http://d6.yihaodianimg.com/N05/M07/EE/AB/CgQI01SaH-qAdPctAAJ5qc8GrTo25700.jpg','海淘',2,1);
-insert into ad_content(url,pic,text,index,ad_position_id)values('http://cms.yhd.com/cmsPage/show.do?pageId=121818','http://d7.yihaodianimg.com/N06/M06/8C/F2/CgQIzVSaM2CAbzAnAAFk-B3VrIM94300.jpg','test',1,1);
+insert into ad_content(url,pic,text,ad_index,ad_position_id)values('http://cms.yhd.com/cmsPage/show.do?pageId=126992','http://d6.yihaodianimg.com/N05/M07/EE/AB/CgQI01SaH-qAdPctAAJ5qc8GrTo25700.jpg','海淘',2,1);
+insert into ad_content(url,pic,text,ad_index,ad_position_id)values('http://cms.yhd.com/cmsPage/show.do?pageId=121818','http://d7.yihaodianimg.com/N06/M06/8C/F2/CgQIzVSaM2CAbzAnAAFk-B3VrIM94300.jpg','test',1,1);
 
 commit;
