@@ -2,6 +2,7 @@ package com.banyou.backend.entity;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -15,7 +16,7 @@ public class AdContent extends IdEntity {
 	private String url;
 	private String pic;
 	private String text;
-
+@Column(name="ad_index")
 	private int index;
 
 	public String getUrl() {
