@@ -15,6 +15,7 @@ import com.banyou.backend.entity.Product;
 import com.banyou.backend.entity.ProductDesc;
 import com.banyou.backend.repository.ProductDao;
 import com.banyou.backend.repository.ProductDescDao;
+import com.banyou.backend.repository.mybatis.ProductMyBatisDao;
 import com.banyou.backend.service.account.ShiroDbRealm.ShiroUser;
 import com.banyou.backend.web.UserContext;
 import com.google.common.collect.Maps;
@@ -50,6 +51,8 @@ public class ProductService {
 	private ProductDao productDao;
 
 	private ProductDescDao productDescDao;
+	
+	private ProductMyBatisDao productMyBatisDao;
 
 	/**
 	 * 获取单个商品信息
@@ -78,6 +81,25 @@ public class ProductService {
 		return product;
 	}
 
+	/**
+	 * 
+	 * @param pageSize
+	 *            分页大小
+	 * @param pageNo
+	 *            第几页
+	 * @return
+	 */
+	public List<Product> searchProducts(Long[] dests,Long[] tags, int pageNo,int pageSize) {
+
+		Pageable page = pageSize > 0 ? new PageRequest(pageNo - 1, pageSize)
+				: null;
+		
+		return productMyBatisDao.findProductListByDestsByTags(dests, tags, page);
+		
+	}
+	
+	
+	
 	/**
 	 * 
 	 * @param pageSize
@@ -230,6 +252,14 @@ public class ProductService {
 	@Autowired
 	public void setProductDescDao(ProductDescDao productDescDao) {
 		this.productDescDao = productDescDao;
+	}
+
+
+	
+
+@Autowired
+	public void setProductMyBatisDao(ProductMyBatisDao productMyBatisDao) {
+		this.productMyBatisDao = productMyBatisDao;
 	}
 
 }

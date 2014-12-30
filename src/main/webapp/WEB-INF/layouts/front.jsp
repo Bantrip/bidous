@@ -20,14 +20,10 @@
           </div>
           <a href="" class="cart"><span class="icon-cart"></span><span class="num">99</span><span class="name">购物车</span></a>
         -->
-       	</div> <a href="" class="logo"><img src="${staticPath}/images/logo2.png"></a>
+       	</div> <a href="" class="logo"><img src="${staticPath}/images/logo.png"></a>
       </div>
     </div>
-    <sitemesh:body/>
-
-   
-
-      
+    <sitemesh:body/>      
     <script src="${staticPath}/neurons/neuron.js"></script>
     <script src="${staticPath}/neurons/config.js"></script>
     <script>

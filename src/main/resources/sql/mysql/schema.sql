@@ -7,6 +7,8 @@ drop table if exists tag;
 drop table if exists product_has_tag;
 drop table if exists product_desc;
 drop table if exists merchant;
+drop table if exists ad_position;
+drop table if exists ad_content;
 
 create table merchant (
   id bigint auto_increment,
@@ -89,6 +91,7 @@ create table dest (
   id bigint auto_increment,
   name VARCHAR(200)  COMMENT '地点名',
   type bigint  COMMENT '类型 0 国内 1 境外',
+  pic varchar(1000) comment '地点图片',
   	creater bigint,
 	create_time timestamp,
   PRIMARY KEY (id)
@@ -112,6 +115,27 @@ create table product (
   PRIMARY KEY (id)
  )ENGINE = InnoDB;
 
+CREATE TABLE  ad_position (
+  id bigint auto_increment,
+  code VARCHAR(100) NULL,
+  name VARCHAR(500) NULL,
+  pageId bitint,
+  creater bigint,
+  create_time timestamp,
+  PRIMARY KEY (id))ENGINE = InnoDB;
+  
+CREATE TABLE ad_content (
+   id bigint auto_increment,
+  url VARCHAR(500) NULL,
+  pic VARCHAR(500) NULL,
+  text VARCHAR(500) NULL,
+  exts VARCHAR(1000) NULL,
+  index INT NULL,
+  ad_position_id INT NOT NULL,
+  creater bigint,
+  create_time timestamp,
+  PRIMARY KEY (id)
+ )ENGINE = InnoDB;
 
 
 

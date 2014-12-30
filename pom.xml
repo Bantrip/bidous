@@ -13,6 +13,7 @@
 		<springside.version>4.3.0-SNAPSHOT</springside.version>
 		<spring.version>4.1.1.RELEASE</spring.version>
 		<hibernate.version>4.3.5.Final</hibernate.version>
+		<mybatis.version>3.2.7</mybatis.version>
 		<spring-data-jpa.version>1.6.0.RELEASE</spring-data-jpa.version>
 		<tomcat-jdbc.version>7.0.53</tomcat-jdbc.version>
 		<sitemesh.version>2.4.2</sitemesh.version>
@@ -97,7 +98,17 @@
 			<artifactId>spring-data-jpa</artifactId>
 			<version>${spring-data-jpa.version}</version>
 		</dependency>
-
+			<!-- mybatis -->
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis</artifactId>
+				<version>${mybatis.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-spring</artifactId>
+				<version>1.2.2</version>
+			</dependency>
 		<!-- spring aop -->
 		<dependency>
 			<groupId>org.aspectj</groupId>

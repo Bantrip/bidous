@@ -1,5 +1,3 @@
-
-
 insert into ss_user (id, login_name, name, password, salt, roles,merchant_id, create_time) values(1,'huangkemin@msn.com','Admin','691b14d79bf0fa2215f155235df5e670b64394cc','7efbd59d9741d34f','admin,user',1,'2012-06-04 01:00:00');
 insert into ss_user (id, login_name, name, password, salt, roles,merchant_id, create_time) values(2,'user@gmail.com','小柚皮','2488aa0c31c624687bd9928e0a5d29e7d1ed520b','6d65d24122c30500','admin,user',1,'2012-06-04 02:00:00');
 insert into ss_user (id,login_name, name, password, salt, roles, merchant_id,create_time) values(3,'ceshi@gmail.com','测试商家','0962e7f15cc506de09ea84684695fce3fbe43c44','882567e6cb0dde41','user',2,'2014-11-11 05:44:03');
@@ -12,13 +10,17 @@ insert into merchant(id,name,type,creater,create_time)values(2,'测试商家',1,
 
 
 insert into product (id,name,merchant_id,pics, recommand , status ,  price,url,creater,create_time) 
-values (1,'18岁大学生陪你游山玩水－测试商家商品',2,'http://d7.yihaodianimg.com/N07/M01/02/26/ChEbvFRW9E2Aca1_AAFD67mmpHU46600.jpg,http://d9.yihaodianimg.com/N07/M0B/14/A6/CgQI0FRR5zeAMuOeAABA6o7BXsA62300.jpg,http://d9.yihaodianimg.com/N05/M03/7E/FC/CgQI0lRTZf6AYV8jAAFkCYOAHJI56000.jpg','no zuo no die',1,22.3,'http://www.yhd.com',3,'2014-11-11 10:13:12');
+values (1,'18岁大学生陪你游山玩水－测试商家商品',2,'http://d7.yihaodianimg.com/N07/M01/02/26/ChEbvFRW9E2Aca1_AAFD67mmpHU46600.jpg,http://d9.yihaodianimg.com/N07/M0B/14/A6/CgQI0FRR5zeAMuOeAABA6o7BXsA62300.jpg,http://d9.yihaodianimg.com/N05/M03/7E/FC/CgQI0lRTZf6AYV8jAAFkCYOAHJI56000.jpg','no zuo no die',2,22.3,'http://www.yhd.com',3,'2014-11-11 10:13:12');
 insert into product (id,name,merchant_id,pics, recommand , status ,  price,url,creater,create_time) 
-values (2,'高科技产品－自营商家商品',1,'http://d7.yihaodianimg.com/N05/M03/84/97/CgQI0lRW4ueAVzWAAAA7gYPVO4U94500.jpg,http://d8.yihaodianimg.com/V00/M08/37/74/CgQDsFQrdMyAbyBCAAA2fEMvzqc32800.jpg','why you try',0,1222.3,'htp://www.yhd.com',1,'2014-11-11 10:13:12');
+values (2,'高科技产品－自营商家商品',1,'http://d7.yihaodianimg.com/N05/M03/84/97/CgQI0lRW4ueAVzWAAAA7gYPVO4U94500.jpg,http://d8.yihaodianimg.com/V00/M08/37/74/CgQDsFQrdMyAbyBCAAA2fEMvzqc32800.jpg','why you try',2,1222.3,'htp://www.yhd.com',2,'2014-11-11 10:13:12');
+insert into product (id,name,merchant_id,pics, recommand , status ,  price,url,creater,create_time) 
+values (3,'高科技产品4－自营商家商品',1,'http://d7.yihaodianimg.com/N05/M03/84/97/CgQI0lRW4ueAVzWAAAA7gYPVO4U94500.jpg,http://d8.yihaodianimg.com/V00/M08/37/74/CgQDsFQrdMyAbyBCAAA2fEMvzqc32800.jpg','why you try',1,1222.3,'htp://www.yhd.com',2,'2014-11-11 10:13:12');
+insert into product (id,name,merchant_id,pics, recommand , status ,  price,url,creater,create_time) 
+values (4,'高科技产品2－自营商家商品',1,'http://d7.yihaodianimg.com/N05/M03/84/97/CgQI0lRW4ueAVzWAAAA7gYPVO4U94500.jpg,http://d8.yihaodianimg.com/V00/M08/37/74/CgQDsFQrdMyAbyBCAAA2fEMvzqc32800.jpg','why you try',2,1222.3,'htp://www.yhd.com',2,'2014-11-11 10:13:12');
 
 
 
-insert into dest(id,name,type) values (1,'三亚',0);
+insert into dest(id,name,type) values (1,'三亚山',0);
 insert into dest(id,name,type) values (2,'长白山',0);
 insert into dest(id,name,type) values (3,'丽江',0);
 insert into dest(id,name,type) values (4,'桂林',0);
@@ -51,9 +53,10 @@ insert into dest(id,name,type) values (30,'尼泊尔',1);
 insert into dest(id,name,type) values (31,'济州岛',1);
 
 insert into product_has_dest(dest_id,product_id)values(1,1);
-insert into product_has_dest(dest_id,product_id)values(1,18);
-insert into product_has_dest(dest_id,product_id)values(2,1);
-insert into product_has_dest(dest_id,product_id)values(2,27);
+insert into product_has_dest(dest_id,product_id)values(1,3);
+insert into product_has_dest(dest_id,product_id)values(1,4);
+insert into product_has_dest(dest_id,product_id)values(2,2);
+insert into product_has_dest(dest_id,product_id)values(2,4);
 
 insert into tag_group(id,name)values(1,'主题');
 insert into tag_group(id,name)values(2,'品类');
@@ -104,5 +107,9 @@ insert into product_desc(id,content,product_id,desc_index,type) values(3,'http:/
 
 insert into product_desc(id,content,product_id,desc_index,type) values(4,'n买的不是傻逼才怪\n买的不是傻逼才怪',2,2,0);
 
+
+insert into ad_position(id,code,name)values(1,'INDEX_LUNBO','首页轮播');
+insert into ad_content(url,pic,text,index,ad_position_id)values('http://cms.yhd.com/cmsPage/show.do?pageId=126992','http://d6.yihaodianimg.com/N05/M07/EE/AB/CgQI01SaH-qAdPctAAJ5qc8GrTo25700.jpg','海淘',2,1);
+insert into ad_content(url,pic,text,index,ad_position_id)values('http://cms.yhd.com/cmsPage/show.do?pageId=121818','http://d7.yihaodianimg.com/N06/M06/8C/F2/CgQIzVSaM2CAbzAnAAFk-B3VrIM94300.jpg','test',1,1);
 
 commit;

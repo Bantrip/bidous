@@ -8,8 +8,9 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.google.common.collect.Sets;
 
 public class JsonView extends org.springframework.web.servlet.view.json.MappingJackson2JsonView{
+	public static final String CONTENT_NAME="result";
 	private String errorName="exception";
-	private String contentName="result";
+	private String contentName=CONTENT_NAME;
 	private String messageName="message";
 	private org.slf4j.Logger log=org.slf4j.LoggerFactory.getLogger(getClass());
 	@PostConstruct
@@ -21,13 +22,15 @@ public class JsonView extends org.springframework.web.servlet.view.json.MappingJ
 	
 	@Override
 	protected Object filterModel(Map<String, Object> model) {
-		
 		Object filteredMap= super.filterModel(model);
 		AjaxResponse<Object> ret=new AjaxResponse<>();
 		if(filteredMap instanceof Map){
 			Map item=(Map) filteredMap;
 			ret.setResult(item.get(contentName));
+			String message=(String) item.get(messageName);
+			if(message!=null){
 			ret.setMessage(String.valueOf(item.get(messageName)));
+			}
 			Object ex=item.get(errorName);
 			if(ex!=null&& ex instanceof Exception){
 				Exception e=(Exception) ex;

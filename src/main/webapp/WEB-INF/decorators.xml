@@ -6,6 +6,7 @@
 	</excludes>
 	<decorator name="front" page="front.jsp">
 		<pattern>/front/*</pattern>
+		<pattern>/front</pattern>
 	</decorator>
 	
 	<decorator name="default" page="default.jsp">
