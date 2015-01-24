@@ -1,7 +1,5 @@
 package com.banyou.backend.account;
 
-import java.lang.reflect.Proxy;
-import java.text.DateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Map;
@@ -10,14 +8,7 @@ import java.util.StringTokenizer;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.junit.Test;
 import org.mockito.InjectMocks;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.format.datetime.joda.JodaTimeContext;
 
-import com.banyou.backend.entity.User;
-import com.banyou.backend.repository.UserDao;
 import com.banyou.backend.service.account.AccountService;
 import com.google.common.collect.Maps;
 
